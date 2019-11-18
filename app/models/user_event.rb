@@ -1,0 +1,2 @@
+class UserEvent < ApplicationRecord
+end

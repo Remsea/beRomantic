@@ -1,0 +1,2 @@
+class KeyDate < ApplicationRecord
+end
