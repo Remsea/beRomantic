@@ -1,0 +1,2 @@
+class PartenaireInterest < ApplicationRecord
+end
