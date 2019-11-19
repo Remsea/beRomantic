@@ -1,5 +1,5 @@
 class Partenaire < ApplicationRecord
   belongs_to :user
 
-  validates :name, presence: true
+  validates :firstname, presence: true
 end

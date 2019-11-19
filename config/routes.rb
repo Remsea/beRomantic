@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+
   resources :pages, only: [:index]
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :pages, only: [:show]
   resources :partenaires, only: [:index, :update, :edit]
   resources :partenaire_interests, only: [:create, :destroy]
