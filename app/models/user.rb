@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
   has_many :partenaires
+  has_many :partenaire_interests
   has_many :interests, through: :partenaire_interests
   has_many :key_dates
   has_many :user_events
