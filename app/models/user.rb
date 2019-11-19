@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :partenaires
-  has_many :partenaire_interests
+  has_many :interests, through: :partenaire_interests
   has_many :key_dates
   has_many :user_events
   has_many :memos
