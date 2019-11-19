@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :user_events
   has_many :memos
 
+  after_create :create_partner
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice("provider", "uid")
     user_params.merge! auth.info.slice("email", "first_name", "last_name")
@@ -29,5 +31,9 @@ class User < ApplicationRecord
       user.save
     end
     return user
+  end
+
+  def create_partner
+    Partenaire.create(user: self)
   end
 end
