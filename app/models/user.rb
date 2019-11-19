@@ -8,7 +8,4 @@ class User < ApplicationRecord
   has_many :key_dates
   has_many :user_events
   has_many :memos
-
-  validates :email, presence: true
-  validates :first_name, presence: true
 end
