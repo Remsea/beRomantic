@@ -1,0 +1,17 @@
+function refreshForm() {
+  const newReviewForm = document.querySelector("#interest_id");
+  $val = newReviewForm.firstChild.value;
+  newReviewForm.value = $val;
+}
+
+function addInteret(reviewHTML) {
+  const reviews = document.getElementById('interets');
+  reviews.innerHTML = reviewHTML;
+}
+
+<% if @part_interest.errors.any? %>
+  refreshForm();
+<% else %>
+  addInteret('<%= j render "partenaires/interet"%>');
+  refreshForm();
+<% end %>
