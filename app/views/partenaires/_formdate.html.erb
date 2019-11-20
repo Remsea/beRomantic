@@ -1,0 +1,7 @@
+<div id="date_clef">
+  <%= form_with url: key_dates_path, method: :post do |f| %>
+  <%= f.date_field :date %>
+  <%= f.text_field :description %>
+  <%= f.submit :ajouter %>
+<% end %>
+</div>

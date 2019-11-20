@@ -20,7 +20,7 @@ function addInteret2(reviewHTML) {
 }
 
 <% if @part_interest.errors.any? %>
-  refreshForm();
+  refreshForm1();
 <% else %>
   <% if @part_interest.interest.genre == "Centre d'intérêt" %>
   addInteret1('<%= j render "partenaires/interet"%>');

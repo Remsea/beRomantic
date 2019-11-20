@@ -1,10 +1,9 @@
 
   <ul>
-<% current_user.interests.each do |interest| %>
-  <% if interest.genre == "Centre d'intérêt" %>
-  <li><%= interest.title  %></li>
-  <% end %>
-<% end %>
-
+    <% current_user.interests.each do |interest| %>
+      <% if interest.genre == "Centre d'intérêt" %>
+      <li><%= interest.title  %></li>
+      <% end %>
+    <% end %>
   </ul>
 
