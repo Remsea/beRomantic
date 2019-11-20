@@ -32,6 +32,8 @@ class PartenaireInterestsController < ApplicationController
   end
 
   def destroy
+    @tdinteret = PartenaireInterest.find(params[:id])
+    @tdinteret.destroy
   end
 
   private

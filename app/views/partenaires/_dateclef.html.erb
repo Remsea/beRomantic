@@ -1,7 +1,9 @@
  <div id="dates">
   <ul>
     <% current_user.key_dates.each do |date| %>
-      <li><%= date.date%>, <%= date.description%></li>
+      <li data-keydateid ="<%=date.id%>">
+      <%= link_to "Delete -", date, method: :delete, remote: true %>
+      <%= date.date%>, <%= date.description%></li>
       <% end %>
   </ul>
 </div>

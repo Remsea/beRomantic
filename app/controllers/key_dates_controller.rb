@@ -16,9 +16,12 @@ class KeyDatesController < ApplicationController
   end
 
   def udpate
+
   end
 
   def destroy
+    @tdkeydate = KeyDate.find(params[:id])
+    @tdkeydate.destroy
   end
 
   private
