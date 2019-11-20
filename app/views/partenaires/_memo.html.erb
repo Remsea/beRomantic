@@ -1,0 +1,7 @@
+  <div id="memolist">
+  <ul>
+    <% current_user.memos.each do |memo| %>
+      <li><%= memo.content%> / <%= memo.created_at%> / <%= memo.calendardate%></li>
+    <% end %>
+  </ul>
+</div>
