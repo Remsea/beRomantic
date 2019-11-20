@@ -1,0 +1,7 @@
+<div id="memo">
+  <%= form_with url: memos_path, method: :post do |f| %>
+  <%= f.text_field :content %>
+  <%= f.date_field :calendardate %>
+  <%= f.submit :ajouter %>
+<% end %>
+</div>
