@@ -1,0 +1,18 @@
+function refreshForm1() {
+  const newReviewForm = document.querySelector("#memo");
+  newReviewForm.innerHTML = '<%= j render "partenaires/formmemo"%>'
+}
+
+
+function addInteret1(memoHTML) {
+  const memoul = document.querySelector('div#memolist');
+  memoul.innerHTML = memoHTML;
+}
+
+
+<% if @newmemo.errors.any? %>
+  refreshForm1();
+<% else %>
+  addInteret1('<%= j render "partenaires/memo"%>');
+  refreshForm1();
+<% end %>
