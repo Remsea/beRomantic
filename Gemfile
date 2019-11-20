@@ -1,6 +1,9 @@
 
 source 'https://rubygems.org'
 ruby '2.6.3'
+
+gem 'carrierwave', '~> 1.2'
+gem 'cloudinary', '~> 1.9.1'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'omniauth-facebook'
 gem 'bootsnap', require: false
