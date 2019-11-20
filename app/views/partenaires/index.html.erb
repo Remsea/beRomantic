@@ -1,14 +1,4 @@
 <h1>partenaire informations</h1>
-<div class="flash-container">
-<% if flash[:notice].present? %>
-  <div class="alert alert-info alert-dismissible" role="alert">
-  <%= notice %>
-  </div>
-  <% puts 'je passe par la notice' %>
-  <% puts notice %>
-<% puts flash[:notice] %>
-<% end %>
-</div>
 
 
 <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
@@ -18,33 +8,36 @@
   <%= f.submit "valider" %>
 <% end %>
 
-
+<hr>
 <!-- , local: true pour le form_with evite ajax -->
-<p>choisir un interet et l'ajouter</p>
+<h3>choisir un interet et l'ajouter</h3>
 <%= form_with url: partenaire_interests_path, method: :post do |f| %>
   <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
 <%= f.submit :ajouter %>
 <% end %>
 
-<p>visualiser les interets choisis</p>
+<p>Centres d'interêts repérés!: </p>
 
 <div id="interets" >
   <%= render 'partenaires/interet' %>
 </div>
 
-<p>choisir une activité et l'ajouter</p>
-<%= form_with url: partenaire_interests_path, method: :post do |f| %>
+<hr>
+<h3>choisir une activité et l'ajouter</h3>
+  <%= form_with url: partenaire_interests_path, method: :post do |f| %>
   <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
-<%= f.submit :ajouter %>
-<% end %>
-<p>visualiser les activités choisie</p>
+  <%= f.submit :ajouter %>
+  <% end %>
+<p>Activités préférées choisies :</p>
 <div id="activity" >
   <%= render 'partenaires/activites' %>
 </div>
 
-<p>ajouter une date clef</p>
-<p>visualiser les dates clefs</p>
+<hr>
+<h3>ajouter une date clef</h3>
+<p>Dates clefs ajoutées:</p>
 
+<hr>
 <p>ajouter un memo</p>
 <p>visualiser les memos</p>
 
