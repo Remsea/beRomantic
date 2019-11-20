@@ -1,4 +1,5 @@
 puts 'Cleaning database...'
+PartenaireInterest.destroy_all
 Partenaire.destroy_all
 KeyDate.destroy_all
 Interest.destroy_all
