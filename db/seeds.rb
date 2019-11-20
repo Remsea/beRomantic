@@ -75,26 +75,33 @@ francais_chiffre = {
   a = doc.search('.date-start .annee').text.empty? ? doc.search('.annee').text : doc.search('.date-start .annee').text
   m = doc.search('.date-start .mois').text.empty? ? francais_chiffre[doc.search('.mois').text] : francais_chiffre[doc.search('.date-start .mois').text]
   d = doc.search('.date-start .date').text.empty? ? doc.search('.date').text.first(2) : doc.search('.date-start .date').text.first(2)
-  a = a.to_i
-  m = m.to_i
-  d = d.to_i
+
+  if a.present? && m.present? && d.present?
+    date_start = Date.new(a.to_i, m.to_i, d.to_i)
+  else
+    date_start = nil
+  end
 
   a_end = doc.search('.date-end .annee').text.empty? ? doc.search('.annee').text : doc.search('.date-end .annee').text
   m_end = doc.search('.date-end .mois').text.empty? ? francais_chiffre[doc.search('.mois').text] : francais_chiffre[doc.search('.date-end .mois').text]
   d_end = doc.search('.date-end .date').text.empty? ? doc.search('.date').text.first(2) : doc.search('.date-end .date').text.first(2)
-  a_end = a_end.to_i
-  m_end = m_end.to_i
-  d_end = d_end.to_i
+
+  if a_end.present? && m_end.present? && d_end.present?
+    date_end = Date.new(a_end.to_i, m_end.to_i, d_end.to_i)
+  else
+    date_end = nil
+  end
 
 
   event_category_splited = path.split("/").second
   case event_category_splited
   when "theatre"
+
     i = Event.create! ({
       title: doc.search("ul.breadcrumb li").last.text,
       description: doc.search('section.section_summary div.description p').text,
-      start_date: Date.new(a, m, d),
-      end_date: Date.new(a_end, m_end, d_end),
+      start_date: date_start,
+      end_date: date_end,
       category: event_category_splited,
       address: doc.search('p.place').text,
       link_url: doc.search('.underline').attribute('href').nil? ? "no_url" : doc.search('.underline').attribute('href').value,
@@ -113,8 +120,8 @@ francais_chiffre = {
     i = Event.create! ({
     title: doc.search("ul.breadcrumb li").last.text,
     description: doc.search('div#left_content div').first.children.text,
-    start_date: Date.new(a, m, d),
-    end_date: Date.new(a_end, m_end, d_end),
+    start_date: date_start,
+    end_date: date_end,
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
@@ -131,8 +138,8 @@ francais_chiffre = {
     i = Event.create! ({
     title: doc.search("ul.breadcrumb li").last.text,
     description: doc.search('section.section_summary div.description p').first.text,
-    start_date: Date.new(a, m, d),
-    end_date: Date.new(a_end, m_end, d_end),
+    start_date: date_start,
+    end_date: date_end,
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
@@ -149,8 +156,8 @@ francais_chiffre = {
     i = Event.create! ({
     title: doc.search("ul.breadcrumb li").last.text,
     description: doc.search('section.section_summary div.description p').text,
-    start_date: Date.new(a, m, d),
-    end_date: Date.new(a_end, m_end, d_end),
+    start_date: date_start,
+    end_date: date_end,
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
@@ -167,8 +174,8 @@ francais_chiffre = {
     i = Event.create! ({
     title: doc.search("ul.breadcrumb li").last.text,
     description: doc.search('section.section_summary div.description p').first.text,
-    start_date: Date.new(a, m, d),
-    end_date: Date.new(a_end, m_end, d_end),
+    start_date: date_start,
+    end_date: date_end,
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
@@ -184,9 +191,9 @@ francais_chiffre = {
   when "exposition"
     i = Event.create! ({
     title: doc.search("ul.breadcrumb li").last.text,
-    description: doc.search('section.section_summary div.description p').first.text,
-    start_date: Date.new(a, m, d),
-    end_date: Date.new(a_end, m_end, d_end),
+    description: doc.search('section.section_summary div.description p').first,
+    start_date: date_start,
+    end_date: date_end,
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
