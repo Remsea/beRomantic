@@ -1,0 +1,22 @@
+
+// if (!flash)
+// {
+// function flash() {
+//     let elem = document.querySelector(".alert.alert-info");
+//     if (elem != null)
+//     {
+//       console.log('<%=flash[:notice] %>je passe dans le remove');
+//       elem.remove();
+//       // document.querySelector(".alert.alert-info").parentNode.removeChild(document.querySelector(".alert.alert-info"))
+//     }
+
+//     document.querySelector('.flash-container').innerHTML = "<%= j render 'shared/flashes' %>"
+//
+//   }
+
+// }
+
+// flash();
+
+document.querySelector('.flash-container').innerHTML = "<%= j render 'shared/flashes' %>"
+

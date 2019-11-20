@@ -1,0 +1,7 @@
+ <div id="dates">
+  <ul>
+    <% current_user.key_dates.each do |date| %>
+      <li><%= date.date%>, <%= date.description%></li>
+      <% end %>
+  </ul>
+</div>

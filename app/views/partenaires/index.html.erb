@@ -1,0 +1,44 @@
+<h1>partenaire informations</h1>
+
+
+<p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
+<%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, radius: 50, crop: :thumb, gravity: :face %>
+<%= form_with model: @partenaires.first, method: :patch, local: true do |f| %>
+  <%= f.file_field :photo %>
+  <%= f.submit "valider" %>
+<% end %>
+
+<hr>
+<!-- , local: true pour le form_with evite ajax -->
+<h3>choisir un interet et l'ajouter</h3>
+<%= form_with url: partenaire_interests_path, method: :post do |f| %>
+  <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
+<%= f.submit :ajouter %>
+<% end %>
+
+<p>Centres d'interêts repérés!: </p>
+
+<div id="interets" >
+  <%= render 'partenaires/interet' %>
+</div>
+
+<hr>
+<h3>choisir une activité et l'ajouter</h3>
+  <%= form_with url: partenaire_interests_path, method: :post do |f| %>
+  <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
+  <%= f.submit :ajouter %>
+  <% end %>
+<p>Activités préférées choisies :</p>
+<div id="activity" >
+  <%= render 'partenaires/activites' %>
+</div>
+
+<hr>
+<h3>ajouter une date clef</h3>
+  <%= render 'partenaires/formdate' %>
+<p>Dates clefs ajoutées:</p>
+  <%= render 'partenaires/dateclef' %>
+<hr>
+<p>ajouter un memo</p>
+<p>visualiser les memos</p>
+

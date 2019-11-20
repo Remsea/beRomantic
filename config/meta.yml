@@ -1,0 +1,5 @@
+meta_product_name: "Be Romanntic"
+meta_title: "Be Romantic - Be Romanntic"
+meta_description: "A web app helping every man to be creative on having small attention for his girldfriend or wife"
+meta_image: "logo.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards

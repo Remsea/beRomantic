@@ -1,0 +1,18 @@
+function refreshForm1() {
+  const newReviewForm = document.querySelector("#date_clef");
+  newReviewForm.innerHTML = '<%= j render "partenaires/formdate"%>'
+}
+
+
+function addInteret1(dateHTML) {
+  const dateul = document.querySelector('div#dates');
+  dateul.innerHTML = dateHTML;
+}
+
+
+<% if @newdate.errors.any? %>
+  refreshForm1();
+<% else %>
+  addInteret1('<%= j render "partenaires/dateclef"%>');
+  refreshForm1();
+<% end %>

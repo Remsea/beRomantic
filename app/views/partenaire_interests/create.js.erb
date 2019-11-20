@@ -1,0 +1,34 @@
+function refreshForm1() {
+  const newReviewForm = document.querySelector("#interest_id");
+  $val = newReviewForm.firstChild.value;
+  newReviewForm.value = $val;
+}
+function refreshForm2() {
+  const newReviewForm = document.querySelector("#activite_id");
+  $val = newReviewForm.firstChild.value;
+  newReviewForm.value = $val;
+}
+
+function addInteret1(reviewHTML) {
+  const reviews = document.getElementById('interets');
+  reviews.innerHTML = reviewHTML;
+}
+
+function addInteret2(reviewHTML) {
+  const reviews = document.getElementById('activity');
+  reviews.innerHTML = reviewHTML;
+}
+
+<% if @part_interest.errors.any? %>
+  refreshForm1();
+<% else %>
+  <% if @part_interest.interest.genre == "Centre d'intérêt" %>
+  addInteret1('<%= j render "partenaires/interet"%>');
+  refreshForm1();
+  <% elsif @part_interest.interest.genre == "Activité" %>
+  addInteret2('<%= j render "partenaires/activites"%>');
+  refreshForm2();
+  <% end %>
+<% end %>
+
+
