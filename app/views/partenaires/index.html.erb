@@ -1,6 +1,10 @@
 <h1>partenaire informations</h1>
 <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
-
+<% cl_image_tag @partenaires.first.photo, width: 150, height: 150, crop: :thumb, gravity: :face %>
+<%= simple_form_for(@partenaires.first) do |f| %>
+  <%= f.input :photo %>
+  <%#= f.button :submit %>
+<% end %>
 
 <p>choisir un interet et l'ajouter</p>
 <%= form_with url: partenaire_interests_path, method: :post, remote: false do |f| %>
