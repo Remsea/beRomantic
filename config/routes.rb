@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :partenaires, only: [:index, :update, :edit]
   resources :partenaire_interests, only: [:create, :destroy]
   resources :memos, only: [:create, :destroy, :update]
-  resources :key_date, only: [:create, :destroy, :update]
+  resources :key_dates, only: [:create, :destroy, :update]
   resources :user_events, only: [:create, :destroy, :index]
 end
