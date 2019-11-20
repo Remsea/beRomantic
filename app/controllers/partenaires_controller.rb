@@ -1,14 +1,14 @@
 class PartenairesController < ApplicationController
 
 def index
-@partenaire = current_user.partenaires
+@partenaires = current_user.partenaires
 end
 
-def udpate
-end
 
 def edit
 end
 
+def udpate
+end
 
 end
