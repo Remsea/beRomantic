@@ -1,5 +1,4 @@
 class PartenaireInterestsController < ApplicationController
-
   def create
     @part_interest = PartenaireInterest.new(get_param)
     @part_interest.user = current_user
