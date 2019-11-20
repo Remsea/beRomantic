@@ -1,9 +1,9 @@
 <h1>partenaire informations</h1>
 <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
-<% cl_image_tag @partenaires.first.photo, width: 150, height: 150, crop: :thumb, gravity: :face %>
-<%= simple_form_for(@partenaires.first) do |f| %>
-  <%= f.input :photo %>
-  <%#= f.button :submit %>
+<%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, radius: 50, crop: :thumb, gravity: :face %>
+<%= form_with model: @partenaires.first, method: :patch, local: true do |f| %>
+  <%= f.file_field :photo %>
+  <%= f.submit "valider" %>
 <% end %>
 
 <p>choisir un interet et l'ajouter</p>
