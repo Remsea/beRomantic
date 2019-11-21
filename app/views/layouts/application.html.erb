@@ -33,12 +33,19 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+  <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <% if current_user.present? %>
+      <%= javascript_pack_tag 'subscription' %>
+      <script>window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV['PUBLIC_KEY']).bytes %>);
+</script>
+    <% end %>
   </body>
 </html>

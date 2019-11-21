@@ -33,6 +33,23 @@ class User < ApplicationRecord
     return user
   end
 
+  def send_notif
+    Webpush.payload_send(
+      message: "Coucou",
+      endpoint: subscription['endpoint'],
+      p256dh: subscription['keys']['p256dh'],
+      auth: subscription['keys']['auth'],
+      vapid: {
+        subject: "mailto:sender@example.com",
+        public_key: ENV['PUBLIC_KEY'],
+        private_key: ENV['PRIVATE_KEY']
+      },
+      ssl_timeout: 5, # value for Net::HTTP#ssl_timeout=, optional
+      open_timeout: 5, # value for Net::HTTP#open_timeout=, optional
+      read_timeout: 5 # value for Net::HTTP#read_timeout=, optional
+    )
+  end
+
   def create_partner
     Partenaire.create(user: self)
   end
