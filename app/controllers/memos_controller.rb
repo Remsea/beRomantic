@@ -20,6 +20,8 @@ class MemosController < ApplicationController
   end
 
   def destroy
+    @tdmemo = Memo.find(params[:id])
+    @tdmemo.destroy
   end
 
   private
