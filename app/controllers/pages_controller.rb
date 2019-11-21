@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   def index
     # preparer les données pour le calendrier
     # il faudra taper dans les events users + key_date + memo avec calendardate renseignée
+    @interests = current_user.interests.map { |interest| interest.title.downcase }
   end
 
   private

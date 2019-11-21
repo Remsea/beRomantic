@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :key_dates
   has_many :user_events
   has_many :memos
+  has_many :events, through: :user_events
 
   after_create :create_partner
 
