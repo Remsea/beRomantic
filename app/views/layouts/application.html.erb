@@ -38,15 +38,19 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <% if current_user.present? %>
-      <%= javascript_pack_tag 'subscription' %>
-      <script>window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV['PUBLIC_KEY']).bytes %>);
-    </script>
-    <% end %>
+    <div class="d-flex flex-column" style="min-height: 100vh;">
+      <div class="align-self-stretch flex-grow-1">
+      <%= yield %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <%= javascript_include_tag 'application' %>
+      <%= javascript_pack_tag 'application' %>
+      <% if current_user.present? %>
+        <%= javascript_pack_tag 'subscription' %>
+        <script>window.vapidPublicKey = new Uint8Array(<%= Base64.urlsafe_decode64(ENV['PUBLIC_KEY']).bytes %>);
+      </script>
+      <% end %>
+      </div>
     <%= render '/pages/footer' %>
+    </div>
   </body>
 </html>

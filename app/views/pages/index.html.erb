@@ -27,7 +27,7 @@
       <li><%=PagesController::MONTH[Date.today.month]%>  : <%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month + 1].keys.size unless [Date.today.year][Date.today.month + 1].nil?%>
     </ul>
     <!-- choix de la periode -->
-    <h5>Choisir un intervalle de temps pour visualiser les intentions à venir et passées</h5>
+
     <p>defaut: Jour J +/- 5 jours</p>
     <%= form_with url: pages_path, method: :get, local: true do |f| %>
       <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
