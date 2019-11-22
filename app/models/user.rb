@@ -33,9 +33,9 @@ class User < ApplicationRecord
     return user
   end
 
-  def send_notif
+  def send_notif(message)
     Webpush.payload_send(
-      message: "Coucou",
+      message: message,
       endpoint: subscription['endpoint'],
       p256dh: subscription['keys']['p256dh'],
       auth: subscription['keys']['auth'],
