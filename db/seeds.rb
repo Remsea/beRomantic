@@ -237,7 +237,7 @@ Partenaire.create!(
 
 puts 'Creating key date'
 birthday = KeyDate.create!(
-  date: "21/11/1990",
+  date: "22/11/1990",
   description: "Anniversaire Elodie",
   user: paul
   )
