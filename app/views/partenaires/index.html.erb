@@ -1,5 +1,6 @@
 <h1>partenaire informations</h1>
 
+<%= link_to 'retour au love board', pages_path  %>
 
 <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
 <%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, radius: 50, crop: :thumb, gravity: :face %>
