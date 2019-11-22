@@ -1,24 +1,68 @@
 <h1>love board</h1>
 <p><%= current_user.email %></p>
 
-<p>afficher les données partenaires essentielles</p>
+<h3>afficher les données partenaires essentielles</h3>
 <%= link_to 'partenaire info', partenaires_path  %>
 
-<p>afficher les 4 évenements essentiels</p>
+<h3>afficher les 4 évenements essentiels</h3>
 <p>lien vers la page tous les events sélectionnés</p>
 <%= link_to 'event list', user_events_path  %>
 
 
-<p>ajouter un memo</p>
+
+<h3>calendrier</h3>
+Nombre d'évènements
+<ul>
+  <li><%=PagesController::MONTH[Date.today.month - 2]%> : <%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></li>
+  <li><%=PagesController::MONTH[Date.today.month - 1]%>  : <%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month].keys.size%>
+  <li><%=PagesController::MONTH[Date.today.month]%>  : <%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month + 1].keys.size unless [Date.today.year][Date.today.month + 1].nil?%>
+</ul>
+<!-- choix de la periode -->
+<h5>Choisir un intervalle de temps pour visualiser les intentions à venir et passées</h5>
+<p>defaut: Jour J +/- 5 jours</p>
+<%= form_with url: pages_path, method: :get, local: true do |f| %>
+  <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
+  <%= f.number_field(:nb_jour_pre, {min: 0, max: 30}) %>
+  <%= f.label :nb_jour_post, '< ----- Jour J +++++ >' %>
+  <%= f.number_field(:nb_jour_post, {min: 0, max: 30}) %>
+  <%= f.submit :afficher %>
+<% end %>
+
+<%unless @shortcalendar.nil? %>
+  <ul>
+  <li><strong><%= Time.current.year.to_s %></strong></li>
+  <%@shortcalendar.each do |key, hash_day| %>
+    <ul>
+      <li><%= PagesController::MONTH[key - 1] %>
+        <%hash_day.each do |key, hash_result| %>
+        <ul>
+                <%if hash_result.size > 0 %>
+                <li><%= key.to_s %>
+                <ul>
+
+                    <%if hash_result.has_key?(:Memo) %>
+                       <%hash_result[:Memo].each do |id| %>
+                          <li><%=current_user.memos.find(id).content%></li>
+                        <%end%>
+                    <%end%>
+                    <%if hash_result.has_key?(:Keydate) %>
+                      <%hash_result[:Keydate].each do |id| %>
+                        <li><strong><%=  current_user.key_dates.find(id).description%></strong></li>
+                      <%end %>
+                    <%end%>
+                </ul>
+                </li>
+                <%end%>
+        </ul>
+        <%end%>
+       </li>
+    </ul>
+  <%end%>
+  </ul>
+<%end%>
 
 
-<p>calendrier</p>
-<p>afficher les jours à J -7 et J+ 30</p>
-<p>afficher les events, date clefs, memo aux dates indiquées</p>
 
-
-<p>afficher extract feed</p>
+<h3>afficher extract feed</h3>
 <p>lien vers toutes les feeds</p>
 
-<p>si pas de feed, afficher suggestions cadeaux (3)</p>
-<p>lien vers suggestion cadeaux</p>
