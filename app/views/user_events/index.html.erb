@@ -1,3 +1,25 @@
 <h1>User event list</h1>
 <%= @user_events.first.title unless @user_events.nil? %>
 <p>list des évenements</p>
+
+<h3>filter par évènement</h3>
+<%= form_with url: user_events_path, method: :get, local: true do |f| %>
+  <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
+<%= f.submit :filtrer %>
+<% end %>
+
+<%= @results.length %>
+<% @results.each do |event| %>
+
+        <ul>
+        <li><%= event.category %></li>
+        <li><%= event.title %></li>
+        <li><%= event.description %></li>
+        <li><%= event.address %></li>
+        <li><%= event.start_date %></li>
+        <li><%= event.end_date %></li>
+        <li> <img src="<%= event.photo_url %>" alt="<%= event.title %>"> </li>
+      </ul>
+
+<% end %>
+

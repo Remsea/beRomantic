@@ -2,18 +2,31 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
   MONTH = %w[Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre]
   def home
+    set_insta
   end
 
   def index
+
     @calendar = calendar
     if params[:nb_jour_pre].present? && params[:nb_jour_post].present?
     @shortcalendar = shortcalendar(@calendar, params[:nb_jour_pre].to_i, params[:nb_jour_post].to_i)
     else
     @shortcalendar = shortcalendar(@calendar)
     end
-
     # preparer les données pour le calendrier
     # il faudra taper dans les events users + key_date + memo avec calendardate renseignée
+    @interests = current_user.interests.map { |interest| interest.title.downcase }
+  end
+
+  private
+
+  def set_insta
+    url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=25064177769.1677ed0.8bf171bb5f7a4fcc8995d4172178df73"
+    user_serialized = open(url).read
+    user = JSON.parse(user_serialized)
+    @full_name = user['data'].first['user']['full_name']
+    @profile_picture = user['data'].first['user']['profile_picture']
+    @image = user['data'].first['images']['low_resolution']['url']
   end
 
   def shortcalendar(calendar, nb_jours_pre = 5, nb_jours_post = 5)
