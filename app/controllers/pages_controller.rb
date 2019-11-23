@@ -6,16 +6,53 @@ class PagesController < ApplicationController
   end
 
   def index
-
-    @calendar = calendar
-    if params[:nb_jour_pre].present? && params[:nb_jour_post].present?
-    @shortcalendar = shortcalendar(@calendar, params[:nb_jour_pre].to_i, params[:nb_jour_post].to_i)
-    else
-    @shortcalendar = shortcalendar(@calendar)
-    end
     # preparer les données pour le calendrier
-    # il faudra taper dans les events users + key_date + memo avec calendardate renseignée
-    @interests = current_user.interests.map { |interest| interest.title.downcase }
+    @calendar = calendar_update
+    if params[:nb_jour_pre].present? && params[:nb_jour_post].present?
+      @shortcalendar = shortcalendar(@calendar, params[:nb_jour_pre].to_i, params[:nb_jour_post].to_i)
+    else
+      @shortcalendar = shortcalendar(@calendar)
+    end
+    # Construire la table user_event avec la sélection des events en fct des activites (score = 1)
+    current_user.user_events.where('calendar IS NULL OR calendar = ?', [false]).destroy_all
+
+    activites = current_user.interests.map { |interest|  interest.title.downcase if interest.genre = 'Activité' }
+      query = ""
+      i = 1
+      activites.each do |activite|
+        if i != activites.size
+          query += "events.category = \'#{activite.to_s}\' OR "
+        else
+          query += "events.category = \'#{activite.to_s}\'"
+        end
+        i += 1
+      end
+    event_id_matching_activite = Event.where(query.to_s).select("id")
+    # byebug
+    # on cree les evenements dans la table user_event qui matche les activites (concert, theatre...)
+    event_id_matching_activite.each do |event|
+      if UserEvent.find_by(event_id: event.id).nil?
+        newevent = UserEvent.new(event_id: event.id, score: 1)
+        newevent.user = current_user
+        newevent.save!
+      end
+    end
+
+    # augmentation du score en fct des interets presents dans la description ou le titre
+    centre_interet = current_user.interests.map { |interest|  interest.title.downcase if interest.genre = "Centre d'intérêt" }
+    centre_interet.each do |interet|
+      @pgsearch = Event.search_by_desc_title_url(interet).with_pg_search_rank
+          @pgsearch.each do |r|
+            event = UserEvent.find_by(event_id: r.id)
+            unless event.nil?
+             event.score += ((r.pg_search_rank * 10).to_f).round
+              event.save!
+            end
+          end
+    end
+    # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
+    @userevents = Event.joins(:user_events).where("user_events.user_id = ?",[current_user.id])
+    .order(:score).reverse_order.first(4)
   end
 
   private
@@ -29,6 +66,7 @@ class PagesController < ApplicationController
     @image = user['data'].first['images']['low_resolution']['url']
   end
 
+  # apercu calendrier en fct du jour J et d'une periode avant et après
   def shortcalendar(calendar, nb_jours_pre = 5, nb_jours_post = 5)
     current_year = Date.today.year
     current_month = Date.today.month
@@ -75,7 +113,7 @@ class PagesController < ApplicationController
     end
     return @partialcalendar
   end
-
+  # construction d'un hash contenant 3 années mois et jours nestés
   def calendar_builder
     calendar = {}
     yearmonth = {}
@@ -101,7 +139,8 @@ class PagesController < ApplicationController
     return calendar
   end
 
-  def calendar
+  # mise à jour du hash calendrier avec les memos id et les keydate ids a la bonne date
+  def calendar_update
     @calendarbis = calendar_builder
     current_year = Date.today.year
 
@@ -111,9 +150,18 @@ class PagesController < ApplicationController
     end
 
     current_user.memos.each do |memo|
-      myhash = {Memo: [memo.id]}
-      @calendarbis[memo.calendardate.year][memo.calendardate.month][memo.calendardate.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
+      unless memo.calendardate.nil?
+        myhash = {Memo: [memo.id]}
+        @calendarbis[memo.calendardate.year][memo.calendardate.month][memo.calendardate.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
+      end
     end
+    current_user.events.each do |event|
+      if current_user.user_events.find_by(event_id: event.id).calendar == true
+        myhash = {Event: [event.id]}
+        @calendarbis[event.start_date.year][event.start_date.month][event.start_date.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
+      end
+    end
+
     return @calendarbis
   end
 
