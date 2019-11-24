@@ -59,6 +59,11 @@
                             <li><strong><%=  current_user.key_dates.find(id).description%></strong></li>
                           <%end %>
                         <%end%>
+                        <%if hash_result.has_key?(:Event) %>
+                          <%hash_result[:Event].each do |id| %>
+                            <li><strong style='color:blue;'><%= current_user.events.find(id).title%></strong></li>
+                          <%end %>
+                        <%end%>
                     </ul>
                     </li>
                     <%end%>
@@ -73,11 +78,31 @@
   </div>
   <div class="col-3 rounded bg-light p-2 align-self-start">
     <div class="d-flex flex-column align-items-center">
-    <h3>4 évenements à venir</h3>
-    <p>lien vers la page tous les events sélectionnés</p>
+      <h3>4 évenements à venir</h3>
+      <p>lien vers la page tous les events sélectionnés</p>
+      <%  @userevents.each do |r|%>
+        <div class="card mb-2 rounded-2">
+          <!-- <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap"> -->
+          <%= image_tag(r.photo_url, class:'card-img-top') %>
+          <div class="card-body">
+            <h4 class="card-title"><%= r.title || r.category%> </h4>
+            <p class="card-text">
+              <%= r.start_date %> / <%= r.end_date %>
+            </p>
+            <p class="card-text">
+              <%= r.description[0,100]%> <%= r.description.length > 100 ? '[...]' : ''%>
+            </p>
+            <% userevent = UserEvent.find_by(event_id: r.id) %>
+            <% classc = userevent.calendar == true ? "btn btn-outline-primary" : "btn btn-primary" %>
+            <% text = userevent.calendar == true ? "- calendar" : "+ calendrier" %>
+            <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc  %>
+
+          </div>
+        </div>
+      <% end %>
     <%= link_to 'event list', user_events_path  %>
-  </div>
-  </div>
     </div>
+  </div>
+  </div>
 </div>
 

@@ -21,6 +21,13 @@ class UserEventsController < ApplicationController
     @results = Event.where(query.to_s)
   end
 
+  def update
+    myevent = UserEvent.find(params[:id])
+    myevent.calendar = myevent.calendar == true ? false : true
+    myevent.save!
+    redirect_to pages_path
+  end
+
   def create
   end
 

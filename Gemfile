@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 
+gem 'pg_search'
 gem 'webpush'
 gem 'carrierwave', '~> 1.2'
 gem 'cloudinary', '~> 1.9.1'
@@ -26,7 +27,6 @@ gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'awesome_print'
 end
 
 group :development, :test do
