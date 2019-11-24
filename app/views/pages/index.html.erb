@@ -1,108 +1,24 @@
-<div class="container mg-2">
-  <div class="row">
-  <div class="col-12">
-    <h1>love board</h1>
-    <p><%= current_user.email %></p>
-  </div>
-</div>
-<div class="row justify-content-between">
-  <div class="col-4 rounded-2 bg-light p-2 ml-1">
-    <div class="d-flex flex-column align-items-center">
-      <h3><%= current_user.partenaires.first.firstname%></h3>
-      <%= link_to 'partenaire info', partenaires_path  %>
-      <h5>Dernier post INSTAGRAM</h5>
-      <div class="insta d-flex flex-column align-items-center">
-      <img src="https://scontent.cdninstagram.com/v/t51.2885-15/e35/s320x320/74600049_454472871873356_269788387323676514_n.jpg?_nc_ht=scontent.cdninstagram.com&oh=a6b5c00ceb2f069d569bdef0aa47ad50&oe=5E6C201B" alt="photo insta" width="260" height="260" class='mb-2'>
-      <img src="https://scontent.cdninstagram.com/v/t51.2885-15/e35/s320x320/75430261_154799845747771_4055914214159736813_n.jpg?_nc_ht=scontent.cdninstagram.com&oh=7894fc2c9a7471570310219f8165df59&oe=5E6712AD" alt="photo insta" width="260" height="260">
+<div class="brcontainer">
+
+    <div class="navs sticky">
+      <%= render 'toper' %>
+    </div>
+
+    <div class="sides">
+    <%= render 'sidebar' %>
+    </div>
+
+      <div class="feeds">
+        <%= render 'feed' %>
       </div>
-    </div>
-  </div>
-  <div class="col-4 rounded bg-light p-2 ml-2">
-    <div class="d-flex flex-column align-items-center">
-    <h3>calendrier</h3>
-    Nombre d'évènements
-    <ul>
-      <li><%=PagesController::MONTH[Date.today.month - 2]%> : <%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></li>
-      <li><%=PagesController::MONTH[Date.today.month - 1]%>  : <%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month].keys.size%>
-      <li><%=PagesController::MONTH[Date.today.month]%>  : <%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month + 1].keys.size unless [Date.today.year][Date.today.month + 1].nil?%>
-    </ul>
-    <!-- choix de la periode -->
+      <div class="calendar">
+        <p class="ml-2" style="font-size:1.3em;color:rgb(50,50,50);"><strong>Mon calendrier</strong></p>
+        <%= render 'calendar' %>
+      </div>
+      <div class="events">
+        <p class="ml-2 mt-3 text-center" style="font-size:1.3em;color:rgb(50,50,50);"><strong>Offrir un évènement?</strong></p>
+        <%= render 'eventlist' %>
+      </div>
 
-    <p>defaut: Jour J +/- 5 jours</p>
-    <%= form_with url: pages_path, method: :get, local: true do |f| %>
-      <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
-      <%= f.number_field(:nb_jour_pre, {min: 0, max: 30}) %>
-      <%= f.label :nb_jour_post, '< ----- Jour J +++++ >' %>
-      <%= f.number_field(:nb_jour_post, {min: 0, max: 30}) %>
-      <%= f.submit :afficher %>
-    <% end %>
 
-    <%unless @shortcalendar.nil? %>
-      <ul>
-      <li><strong><%= Time.current.year.to_s %></strong></li>
-      <%@shortcalendar.each do |key, hash_day| %>
-        <ul>
-          <li><%= PagesController::MONTH[key - 1] %>
-            <%hash_day.each do |key, hash_result| %>
-            <ul>
-                    <%if hash_result.size > 0 %>
-                    <li><%= key.to_s %>
-                    <ul>
-
-                        <%if hash_result.has_key?(:Memo) %>
-                           <%hash_result[:Memo].each do |id| %>
-                              <li><%=current_user.memos.find(id).content%></li>
-                            <%end%>
-                        <%end%>
-                        <%if hash_result.has_key?(:Keydate) %>
-                          <%hash_result[:Keydate].each do |id| %>
-                            <li><strong><%=  current_user.key_dates.find(id).description%></strong></li>
-                          <%end %>
-                        <%end%>
-                        <%if hash_result.has_key?(:Event) %>
-                          <%hash_result[:Event].each do |id| %>
-                            <li><strong style='color:blue;'><%= current_user.events.find(id).title%></strong></li>
-                          <%end %>
-                        <%end%>
-                    </ul>
-                    </li>
-                    <%end%>
-            </ul>
-            <%end%>
-           </li>
-        </ul>
-      <%end%>
-      </ul>
-    <%end%>
-    </div>
-  </div>
-  <div class="col-3 rounded bg-light p-2 align-self-start">
-    <div class="d-flex flex-column align-items-center">
-      <h3>4 évenements à venir</h3>
-      <p>lien vers la page tous les events sélectionnés</p>
-      <%  @userevents.each do |r|%>
-        <div class="card mb-2 rounded-2">
-          <!-- <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap"> -->
-          <%= image_tag(r.photo_url, class:'card-img-top') %>
-          <div class="card-body">
-            <h4 class="card-title"><%= r.title || r.category%> </h4>
-            <p class="card-text">
-              <%= r.start_date %> / <%= r.end_date %>
-            </p>
-            <p class="card-text">
-              <%= r.description[0,100]%> <%= r.description.length > 100 ? '[...]' : ''%>
-            </p>
-            <% userevent = UserEvent.find_by(event_id: r.id) %>
-            <% classc = userevent.calendar == true ? "btn btn-outline-primary" : "btn btn-primary" %>
-            <% text = userevent.calendar == true ? "- calendar" : "+ calendrier" %>
-            <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc  %>
-
-          </div>
-        </div>
-      <% end %>
-    <%= link_to 'event list', user_events_path  %>
-    </div>
-  </div>
-  </div>
 </div>
-
