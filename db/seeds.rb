@@ -15,6 +15,7 @@ Partenaire.destroy_all
 KeyDate.destroy_all
 Interest.destroy_all
 Memo.destroy_all
+UserEvent.destroy_all
 User.destroy_all
 Event.destroy_all
 
