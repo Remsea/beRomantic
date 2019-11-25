@@ -16,25 +16,26 @@
       </div>
 
       <div class="memos">
-        <div class="maincard lightshadow">
-          <div class="card text-center mw-50">
-            <div class="card-body">
-              <%= render 'partenaires/formmemo' %>
-            </div>
-          </div>
-          <div class="card-footer text-muted">Ajoute un memo! avec une date, il sera dans le calendrier</div>
-        </div>
+        <%= render 'memoform' %>
       </div>
 
       <div class="memolist">
-        <p class="ml-3" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mes mémos</strong></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="ml-3 mb-0" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mes mémos</strong></p>
+          <i class="fas fa-plus-square mr-4" id="plusmemo">
+          </i>
+        </div>
+        <%= render 'memoformsansdate' %>
         <div class="maincard lightshadow">
           <%= render 'partenaires/memo' %>
         </div>
       </div>
 
       <div class="calendar">
-        <p class="ml-2" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mon calendrier</strong></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="ml-3 mb-0" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mon calendrier</strong></p>
+          <i class="fas fa-plus-square mr-4" style="font-size: 1.6em;color:rgb(73, 73, 87);"></i>
+        </div>
         <%= render 'calendar' %>
       </div>
       <div class="events">
