@@ -1,47 +1,66 @@
-<%= render 'shared/navbar' %>
-<h1>partenaire informations</h1>
 
-<%= link_to 'retour au love board', pages_path  %>
+<div class="bpcontainer">
+  <div class="navs sticky">
+      <%= render 'pages/toper' %>
+  </div>
 
-<p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
-<%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, radius: 50, crop: :thumb, gravity: :face %>
-<%= form_with model: @partenaires.first, method: :patch, local: true do |f| %>
-  <%= f.file_field :photo %>
-  <%= f.submit "valider" %>
-<% end %>
+  <div class="sides">
+      <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
+  </div>
 
-<hr>
-<!-- , local: true pour le form_with evite ajax -->
-<h3>choisir un interet et l'ajouter</h3>
-<%= form_with url: partenaire_interests_path, method: :post do |f| %>
-  <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
-<%= f.submit :ajouter %>
-<% end %>
+  <div class="positionimage">
+      <%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, crop: :thumb, radius: 50, gravity: :face %>
+  </div>
 
-<p>Centres d'interêts repérés!: </p>
 
-<div id="interets" >
-  <%= render 'partenaires/interet' %>
+  <div class="dates">
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Le basique, connaître ses dates clefs 📆</strong></p>
+      <div class="maincard">
+      <%= render 'partenaires/formdate' %>
+      <%= render 'partenaires/dateclef' %>
+    </div>
+  </div>
+
+  <div class="avatare">
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Ajouter une photo 👱🏼‍♀️</strong></p>
+    <div class="maincard colorbleu">
+    <%= form_with model: @partenaires.first, method: :patch, local: true,  class: "form-group text-center mt-3" do |f| %>
+          <%= f.file_field :photo, class: "form-item"%>
+        <%= f.submit "valider" %>
+    <% end %>
+    </div>
+  </div>
+
+
+  <div class="activites">
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Facile, ses activités culturelles préférées 🎤 🎬 🎻</strong></p>
+    <div class="maincard">
+        <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+          <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
+          <%= f.submit :ajouter %>
+        <% end %>
+
+      <div id="activity" >
+        <%= render 'partenaires/activites' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="interets">
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Un peu plus détaillé, quelques centres d'intérêts 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️</strong></p>
+    <div class="maincard">
+     <!-- , local: true pour le form_with evite ajax -->
+      <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+        <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
+        <%= f.submit :ajouter %>
+      <% end %>
+      <div id="interets" >
+        <%= render 'partenaires/interet' %>
+      </div>
+    </div>
+  </div>
+
 </div>
-
-<hr>
-<h3>choisir une activité et l'ajouter</h3>
-  <%= form_with url: partenaire_interests_path, method: :post do |f| %>
-  <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
-  <%= f.submit :ajouter %>
-  <% end %>
-<p>Activités préférées choisies :</p>
-<div id="activity" >
-  <%= render 'partenaires/activites' %>
-</div>
-
-<hr>
-<h3>ajouter une date clef</h3>
-  <%= render 'partenaires/formdate' %>
-<p>Dates clefs ajoutées:</p>
-  <%= render 'partenaires/dateclef' %>
-
-
 
 
 
