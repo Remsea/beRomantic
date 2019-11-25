@@ -84,7 +84,7 @@
      //  ". header header header"
      //  "footer footer footer";
 
-grid: auto auto auto 60% / 1fr 2fr 45% 3fr;
+grid: auto auto auto 60% / 10fr 20fr 45% 15fr;
     background-color: $gris2;
 grid-template-areas:
 "side nav nav nav"

@@ -1,5 +1,10 @@
 
 <div class="bpcontainer">
+
+<div class="backimage">
+ <%= show_svg('backgroundpartenaire2.svg') %>
+</div>
+
   <div class="navs sticky">
       <%= render 'pages/toper' %>
   </div>
@@ -14,7 +19,7 @@
 
 
   <div class="dates">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Le basique, connaître ses dates clefs 📆</strong></p>
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>📆 Le basique, connaître ses dates clefs</strong></p>
       <div class="maincard">
       <%= render 'partenaires/formdate' %>
       <%= render 'partenaires/dateclef' %>
@@ -33,13 +38,12 @@
 
 
   <div class="activites">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Facile, ses activités culturelles préférées 🎤 🎬 🎻</strong></p>
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>🎤 🎬 🎻 Facile, ses activités culturelles préférées</strong></p>
     <div class="maincard">
         <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
           <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
           <%= f.submit :ajouter %>
         <% end %>
-
       <div id="activity" >
         <%= render 'partenaires/activites' %>
       </div>
@@ -47,7 +51,7 @@
   </div>
 
   <div class="interets">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Un peu plus détaillé, quelques centres d'intérêts 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️</strong></p>
+    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong> 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️ allez! quelques détails additionnels </strong></p>
     <div class="maincard">
      <!-- , local: true pour le form_with evite ajax -->
       <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
