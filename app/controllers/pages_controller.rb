@@ -66,12 +66,17 @@ class PagesController < ApplicationController
     url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=25064177769.1677ed0.8bf171bb5f7a4fcc8995d4172178df73"
     user_serialized = open(url).read
     user = JSON.parse(user_serialized)
-    @full_name = user['data'].first['user']['full_name']
-    @profile_picture = user['data'].first['user']['profile_picture']
+    # @full_name = user['data'].first['user']['full_name']
+    # @profile_picture = user['data'].first['user']['profile_picture']
     data = user['data']
     @images = []
     data.each do |hash|
       @images << hash['images']['low_resolution']['url']
+    end
+
+    @dates = []
+    data.each do |times|
+      @dates << times['created_time']
     end
   end
 

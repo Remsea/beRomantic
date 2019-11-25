@@ -27,7 +27,7 @@
             <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-        <% avatar_url = current_user.facebook_picture_url || current_user.photo || 'homme' %>
+        <% avatar_url = current_user.facebook_picture_url || current_user.photo || "http://placehold.it/30x30" %>
         <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
       <% else %>
         <li class="nav-item">
