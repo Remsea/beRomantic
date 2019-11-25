@@ -1,5 +1,10 @@
 
 <div class="bpcontainer">
+
+<div class="backimage">
+ <%= show_svg('backgroundpartenaire2.svg') %>
+</div>
+
   <div class="navs sticky">
       <%= render 'pages/toper' %>
   </div>
@@ -14,7 +19,7 @@
 
 
   <div class="dates">
-    <h2 class="ml-3" >Le basique, connaître ses dates clefs 📆</h2>
+    <h2 class="ml-3" >📆 Le basique, connaître ses dates clefs</h2>
       <div class="maincard">
       <%= render 'partenaires/formdate' %>
       <%= render 'partenaires/dateclef' %>
@@ -33,13 +38,12 @@
 
 
   <div class="activites">
-    <h2 class="ml-3" >Facile, ses activités culturelles préférées 🎤 🎬 🎻</h2>
+    <h2 class="ml-3" > 🎤 🎬 🎻 Facile, ses activités culturelles préférées</h2>
     <div class="maincard">
         <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
           <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
           <%= f.submit :ajouter %>
         <% end %>
-
       <div id="activity" >
         <%= render 'partenaires/activites' %>
       </div>
@@ -47,7 +51,7 @@
   </div>
 
   <div class="interets">
-    <h2 class="ml-3" >Un peu plus détaillé, quelques centres d'intérêts 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️</h2>
+    <h2 class="ml-3" >🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️ Un peu plus détaillé, quelques centres d'intérêts</h2>
     <div class="maincard">
      <!-- , local: true pour le form_with evite ajax -->
       <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
