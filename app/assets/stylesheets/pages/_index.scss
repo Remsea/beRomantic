@@ -9,6 +9,8 @@
   position:absolute;
   top: 30%;
   right: 50%;
+  z-index:30;
+  color: rgb(182, 1, 49);
 }
 
 .feeds {
@@ -27,13 +29,16 @@
 
 .memos {
   grid-area: memo;
-  background-color: rgb(220,250,250);
+  }
+
+.memolist {
+  grid-area: memolist;
 }
 
 .navs {
   grid-area: nav;
   background-color: rgb(220,250,250);
-  box-shadow: 4px 4px 10px rgb(20,20,20);
+  box-shadow: 4px 4px 10px rgba(40,40,40,0.6);
   z-index:19;
 }
 
@@ -41,9 +46,8 @@
 .sides {
   grid-area: side;
   background-color: white;
-  box-shadow: 4px 4px 15px rgb(10,10,10);
+  box-shadow: 4px 4px 15px rgba(30,30,30,0.4);
   z-index:20;
-  border-radius: 0px 10px 10px 0px;
 }
 
 .sticky {
@@ -54,6 +58,7 @@
 .calendar {
   grid-column: 3 / 4;
   grid-row: 4 / 5;
+  z-index: 30;
 }
 // rgb(200,200,200);
 .mfooter {
@@ -77,13 +82,13 @@
      //  ". header header header"
      //  "footer footer footer";
 
-grid: auto auto 10% auto / 1fr 2fr 45% 3fr;
-    background-color: rgb(200,200,200);
+grid: auto auto auto 60% / 1fr 2fr 45% 3fr;
+    background-color: $gris2;
 grid-template-areas:
 "side nav nav nav"
 "side feed feed event"
 "side memo memo event"
-"side . . event";
+"side memolist . event";
 min-width: 100vw;
 min-height: 100vh;
 
