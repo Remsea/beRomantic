@@ -53,6 +53,7 @@ class PagesController < ApplicationController
     # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
     @userevents = Event.joins(:user_events).where("user_events.user_id = ?",[current_user.id])
     .order(:score).reverse_order.first(4)
+    set_insta
   end
 
   private
@@ -63,7 +64,11 @@ class PagesController < ApplicationController
     user = JSON.parse(user_serialized)
     @full_name = user['data'].first['user']['full_name']
     @profile_picture = user['data'].first['user']['profile_picture']
-    @image = user['data'].first['images']['low_resolution']['url']
+    data = user['data']
+    @images = []
+    data.each do |hash|
+      @images << hash['images']['low_resolution']['url']
+    end
   end
 
   # apercu calendrier en fct du jour J et d'une periode avant et après
