@@ -35,6 +35,7 @@ class User < ApplicationRecord
   end
 
   def send_notif(message)
+    p subscription
     Webpush.payload_send(
       message: message,
       endpoint: subscription['endpoint'],
