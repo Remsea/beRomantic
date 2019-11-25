@@ -11,12 +11,31 @@
       <div class="feeds">
         <%= render 'feed' %>
       </div>
+
+      <div class="memos">
+        <div class="maincard">
+          <div class="card text-center mw-50">
+            <div class="card-body">
+              <%= render 'partenaires/formmemo' %>
+            </div>
+          </div>
+          <div class="card-footer text-muted">Ajoute un memo! avec une date, il sera dans le calendrier</div>
+        </div>
+      </div>
+
+      <div class="memolist">
+        <p class="ml-3" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mes mémos</strong></p>
+        <div class="maincard">
+          <%= render 'partenaires/memo' %>
+        </div>
+      </div>
+
       <div class="calendar">
-        <p class="ml-2" style="font-size:1.3em;color:rgb(50,50,50);"><strong>Mon calendrier</strong></p>
+        <p class="ml-2" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mon calendrier</strong></p>
         <%= render 'calendar' %>
       </div>
       <div class="events">
-        <p class="ml-2 mt-3 text-center" style="font-size:1.3em;color:rgb(50,50,50);"><strong>Offrir un évènement?</strong></p>
+        <p class="ml-2 mt-3 text-center" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Offrir un évènement?</strong></p>
         <%= render 'eventlist' %>
       </div>
 
