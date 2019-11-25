@@ -13,6 +13,13 @@ class PagesController < ApplicationController
     else
       @shortcalendar = shortcalendar(@calendar)
     end
+    usereventbuilder
+    set_insta
+  end
+
+  private
+
+  def usereventbuilder
     # Construire la table user_event avec la sélection des events en fct des activites (score = 1)
     current_user.user_events.where('calendar IS NULL OR calendar = ?', [false]).destroy_all
 
@@ -31,7 +38,7 @@ class PagesController < ApplicationController
     # byebug
     # on cree les evenements dans la table user_event qui matche les activites (concert, theatre...)
     event_id_matching_activite.each do |event|
-      if UserEvent.find_by(event_id: event.id).nil?
+      if UserEvent.find_by(event_id: event.id, user_id: current_user.id).nil?
         newevent = UserEvent.new(event_id: event.id, score: 1)
         newevent.user = current_user
         newevent.save!
@@ -53,10 +60,7 @@ class PagesController < ApplicationController
     # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
     @userevents = Event.joins(:user_events).where("user_events.user_id = ?",[current_user.id])
     .order(:score).reverse_order.first(4)
-    set_insta
   end
-
-  private
 
   def set_insta
     url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=25064177769.1677ed0.8bf171bb5f7a4fcc8995d4172178df73"
