@@ -14,7 +14,11 @@
 @import "partenaires/*";
 
 body {
-font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'PT Sans', sans-serif;
+  color:rgb(73, 73, 87)
 }
 
 h1 {
@@ -27,4 +31,12 @@ h2 {
 
 h3 {
   font-size: 16px;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+li {
+  font-family: 'Montserrat', sans-serif;
 }

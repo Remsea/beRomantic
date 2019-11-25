@@ -1,5 +1,5 @@
 <div class="calendarcard">
-    Nombre d'évènements
+    <p>Nombre d'évènements</p>
     <ul>
       <li><%=PagesController::MONTH[Date.today.month - 2]%> : <%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></li>
       <li><%=PagesController::MONTH[Date.today.month - 1]%>  : <%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month].keys.size%>
