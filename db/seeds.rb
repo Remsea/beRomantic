@@ -219,7 +219,8 @@ paul = User.create!(
   email: 'a@a.com',
   password: "azertyuiop",
   first_name: "Paul",
-  city: "Lyon"
+  city: "Lyon",
+  photo: "homme.jpg"
   )
 
 adrien = User.create!(
@@ -238,25 +239,25 @@ Partenaire.create!(
 
 puts 'Creating key date'
 birthday = KeyDate.create!(
-  date: "22/11/1990",
+  date: "25/11/1990",
   description: "Anniversaire Elodie",
   user: paul
   )
 
 first_date = KeyDate.create!(
-  date: "02/03/2012",
+  date: "26/11/2012",
   description: "Premier rendez-vous",
   user: paul
   )
 
 wedding = KeyDate.create!(
-  date: "14/07/2016",
+  date: "27/11/2016",
   description: "Anniversaire de mariage",
   user: paul
   )
 
 dog_birthday = KeyDate.create!(
-  date: "08/08/2017",
+  date: "28/11/2017",
   description: "Anniversaire Titi (son chien)",
   user: paul
   )
