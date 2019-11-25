@@ -14,7 +14,7 @@
 
 
   <div class="dates">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Le basique, connaître ses dates clefs 📆</strong></p>
+    <h2 class="ml-3" >Le basique, connaître ses dates clefs 📆</h2>
       <div class="maincard">
       <%= render 'partenaires/formdate' %>
       <%= render 'partenaires/dateclef' %>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="avatare">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Ajouter une photo 👱🏼‍♀️</strong></p>
+    <h2 class="ml-3" >Ajouter une photo 👱🏼‍♀️</h2>
     <div class="maincard colorbleu">
     <%= form_with model: @partenaires.first, method: :patch, local: true,  class: "form-group text-center mt-3" do |f| %>
           <%= f.file_field :photo, class: "form-item"%>
@@ -33,7 +33,7 @@
 
 
   <div class="activites">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Facile, ses activités culturelles préférées 🎤 🎬 🎻</strong></p>
+    <h2 class="ml-3" >Facile, ses activités culturelles préférées 🎤 🎬 🎻</h2>
     <div class="maincard">
         <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
           <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
@@ -47,7 +47,7 @@
   </div>
 
   <div class="interets">
-    <p class="ml-3" style="font-size:1.1em;color:rgb(73, 73, 87);"><strong>Un peu plus détaillé, quelques centres d'intérêts 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️</strong></p>
+    <h2 class="ml-3" >Un peu plus détaillé, quelques centres d'intérêts 🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️</h2>
     <div class="maincard">
      <!-- , local: true pour le form_with evite ajax -->
       <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>

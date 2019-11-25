@@ -22,23 +22,25 @@
               <%= render 'partenaires/formmemo' %>
             </div>
           </div>
-          <div class="card-footer text-muted">Ajoute un memo! avec une date, il sera dans le calendrier</div>
+          <div class="card-footer text-muted">
+            <h3>Ajoute un mémo ! Avec une date, il sera dans le calendrier</h3>
+          </div>
         </div>
       </div>
 
       <div class="memolist">
-        <p class="ml-3" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mes mémos</strong></p>
+        <h2 class="ml-3" >Mes mémos</h2>
         <div class="maincard lightshadow">
           <%= render 'partenaires/memo' %>
         </div>
       </div>
 
       <div class="calendar">
-        <p class="ml-2" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mon calendrier</strong></p>
+        <h2 class="ml-2" >Mon calendrier</h2>
         <%= render 'calendar' %>
       </div>
       <div class="events">
-        <p class="ml-2 mt-3 text-center" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Offrir un évènement?</strong></p>
+        <h2 class="ml-2 mt-3 text-center" >Des idées de sortie !</h2>
         <%= render 'eventlist' %>
       </div>
 
