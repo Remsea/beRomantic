@@ -81,7 +81,7 @@ francais_chiffre = {
   if a.present? && m.present? && d.present?
     date_start = Date.new(a.to_i, m.to_i, d.to_i)
   else
-    date_start = nil
+    date_start = "2020-02-19"
   end
 
   a_end = doc.search('.date-end .annee').text.empty? ? doc.search('.annee').text : doc.search('.date-end .annee').text
@@ -91,7 +91,7 @@ francais_chiffre = {
   if a_end.present? && m_end.present? && d_end.present?
     date_end = Date.new(a_end.to_i, m_end.to_i, d_end.to_i)
   else
-    date_end = nil
+    date_end = "2020-02-19"
   end
 
 
@@ -219,7 +219,8 @@ paul = User.create!(
   email: 'a@a.com',
   password: "azertyuiop",
   first_name: "Paul",
-  city: "Lyon"
+  city: "Lyon",
+  photo: "homme.jpg"
   )
 
 adrien = User.create!(
@@ -238,25 +239,25 @@ Partenaire.create!(
 
 puts 'Creating key date'
 birthday = KeyDate.create!(
-  date: "22/11/1990",
+  date: "25/11/1990",
   description: "Anniversaire Elodie",
   user: paul
   )
 
 first_date = KeyDate.create!(
-  date: "02/03/2012",
+  date: "26/11/2012",
   description: "Premier rendez-vous",
   user: paul
   )
 
 wedding = KeyDate.create!(
-  date: "14/07/2016",
+  date: "27/11/2016",
   description: "Anniversaire de mariage",
   user: paul
   )
 
 dog_birthday = KeyDate.create!(
-  date: "08/08/2017",
+  date: "28/11/2017",
   description: "Anniversaire Titi (son chien)",
   user: paul
   )

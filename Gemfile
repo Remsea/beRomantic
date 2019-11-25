@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
 
+gem 'rails-i18n'
 gem 'pg_search'
 gem 'webpush'
 gem 'carrierwave', '~> 1.2'
