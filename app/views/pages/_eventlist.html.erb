@@ -1,24 +1,31 @@
 
 <div class="calendarcard scrollable">
-      <%  @userevents.each do |r|%>
-        <div class="card mb-2 rounded-2">
-          <!-- <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap"> -->
-          <%= image_tag(r.photo_url, class:'card-img-top') %>
-          <div class="card-body">
-            <h4 class="card-title"><%= r.title || r.category%> </h4>
-            <p class="card-text">
-              <%= r.start_date %> / <%= r.end_date %>
-            </p>
-            <p class="card-text">
-              <%= r.description[0,100]%> <%= r.description.length > 100 ? '[...]' : ''%>
-            </p>
-            <% userevent = UserEvent.find_by(event_id: r.id) %>
-            <% classc = userevent.calendar == true ? "btn btn-outline-primary" : "btn btn-primary" %>
-            <% text = userevent.calendar == true ? "- calendar" : "+ calendrier" %>
-            <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc  %>
-
-          </div>
-        </div>
-      <% end %>
-    <%= link_to 'event list', user_events_path  %>
+  <%  @userevents.each do |r|%>
+  <div class="eventcard">
+    <div class="notes">
+      <div> <%= UserEvent.find_by(event_id: r.id).score%>/ 100</div>
+    </div>
+     <%= image_tag r.photo_url, class:"eventimg"%>
+    <div class="eventinfos">
+      <h2><%= r.title || r.category%> </h2>
+      <p class=eventdate>
+        Du <%= r.start_date %> au <%= r.end_date %>
+      </p>
+      <span>
+      <i class="fas fa-map-marker-alt" style="color:#9E1C17"></i>
+      </span>
+      <%= r.address %>
+      <div class="eventdescription">
+        <p><%= r.description[0,100]%> <%= r.description.length > 100 ? link_to('[...]', r.link_url) : '' %></p>
+        <% userevent = UserEvent.find_by(event_id: r.id) %>
+        <% classc = userevent.calendar == true ? "btn btn-outline-danger rounded" : "btn btn-danger rounded" %>
+        <% text = userevent.calendar == true ? "- " : "+ " %>
+        <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc   %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class=eventlist>
+    <%= link_to 'event list', user_events_path, class:'btn btn-outline-danger' %>
+  </div>
 </div>

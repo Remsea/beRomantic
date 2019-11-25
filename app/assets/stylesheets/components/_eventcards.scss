@@ -1,0 +1,78 @@
+
+.eventcard {
+  height: 400px;
+  width: 330px;
+  margin: 10px auto;
+  box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.eventimg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: transform 0.3s;
+}
+
+.eventcard:hover img {
+  transform: scale(1.2);
+}
+
+.eventinfos {
+  padding: 21px 10px 10px;
+  background: white;
+  max-height: 135px;
+  transition: max-height ease 0.3s;
+  overflow: hidden;
+  z-index: 10;
+  text-align: justify;
+}
+
+.eventcard:hover .eventinfos {
+  max-height: 500px;
+}
+
+.notes {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  z-index: 1;
+  background: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  text-align: center;
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    }
+
+    .rounded {
+      border-radius: 100%!important;
+      height: 40px;
+      width:40px;
+    }
+
+.eventdescription {
+  margin-top: 10px;
+}
+
+.addresscolor {
+  color: light-gray;
+}
+
+.eventlist {
+  margin-left: 125px;
+
+}
+
+.eventdate {
+ color:#999999;
+ font-style: italic;
+}
+
