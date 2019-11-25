@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "BeRomantic_logo_1.png" %>
     <% end %>
 
@@ -11,18 +11,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", root_path, class: "nav-link" %>
+        <li class="nav-item">
+          <%= link_to "Love Board", pages_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+          <%= link_to "Ses informations", partenaires_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <%= link_to "Les événements", user_events_path, class: "nav-link" %>
+        </li>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%#= link_to "Action", "#", class: "dropdown-item" %>
+            <%#= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Me déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
         <% avatar_url = current_user.facebook_picture_url || "http://placehold.it/30x30" %>
