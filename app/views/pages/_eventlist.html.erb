@@ -12,7 +12,7 @@
             <p class="card-text">
               <%= r.description[0,100]%> <%= r.description.length > 100 ? '[...]' : ''%>
             </p>
-            <% userevent = UserEvent.find_by(event_id: r.id) %>
+            <% userevent = UserEvent.find_by(event_id: r.id, user_id: current_user.id) %>
             <% classc = userevent.calendar == true ? "btn btn-outline-primary" : "btn btn-primary" %>
             <% text = userevent.calendar == true ? "- calendar" : "+ calendrier" %>
             <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc  %>
