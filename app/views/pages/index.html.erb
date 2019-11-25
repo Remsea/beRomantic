@@ -5,15 +5,18 @@
     </div>
 
     <div class="sides">
-    <%= render 'sidebar' %>
     </div>
+
+     <div class="positionimage">
+      <%= render 'sidebar' %>
+     </div>
 
       <div class="feeds">
         <%= render 'feed' %>
       </div>
 
       <div class="memos">
-        <div class="maincard">
+        <div class="maincard lightshadow">
           <div class="card text-center mw-50">
             <div class="card-body">
               <%= render 'partenaires/formmemo' %>
@@ -25,7 +28,7 @@
 
       <div class="memolist">
         <p class="ml-3" style="font-size:1.3em;color:rgb(73, 73, 87);"><strong>Mes mémos</strong></p>
-        <div class="maincard">
+        <div class="maincard lightshadow">
           <%= render 'partenaires/memo' %>
         </div>
       </div>

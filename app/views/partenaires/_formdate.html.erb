@@ -1,6 +1,6 @@
 <div id="date_clef">
-  <%= form_with url: key_dates_path, method: :post do |f| %>
-  <%= f.date_field :date %>
+  <%= form_with url: key_dates_path, method: :post, class:'text-center mb-2' do |f| %>
+  <%= f.date_field :date, required: true %>
   <%= f.text_field :description %>
   <%= f.submit :ajouter %>
 <% end %>
