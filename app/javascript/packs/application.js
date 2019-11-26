@@ -1,5 +1,5 @@
 import "bootstrap";
-
+import { listenerrange } from './rangeoutput.js'; // ./ sinon. va chercher dans node module
 function updateTextInput(val) {
           document.getElementById('textInput').value=val;
         };
@@ -31,4 +31,5 @@ const cache = () => {
 }
 
 cacheform();
+listenerrange();
 

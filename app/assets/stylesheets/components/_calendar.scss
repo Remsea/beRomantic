@@ -1,0 +1,102 @@
+.containercalendar {
+
+
+
+.annee {
+  position:relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10%;
+}
+
+.popannee {
+  position: absolute;
+    left: -20px;
+    top: 10px;
+    border-radius: 7px;
+    background-color: white;
+    font-size: 0.8em;
+    color: #2b5cd4;
+    max-width: 50px;
+    padding: 4px;
+    border: solid 1px;
+}
+
+.contentmois {
+display:flex;
+flex-wrap: wrap;
+width: 100%;
+border-radius: 7px;
+background-color: $gris2;
+padding: 10px;
+margin-bottom: 3px;
+font-size: 0.9em;
+color: #706e6e;
+}
+
+.mois {
+  flex-grow: 1;
+}
+
+.contentjour {
+  display:flex;
+  flex-wrap: wrap;
+  width: 60%;
+}
+
+.popjour {
+    flex-grow: 1;
+    width: 28%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    border-right-color: white;
+    border-right-style: solid;
+    border-right-width: 1px;
+    font-size: 0.9em;
+    color: #706e6e;
+}
+
+.jourline {
+  display:flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: rgba(250,250,250,0.4);
+  border: solid 1px lightgray;
+  border-radius: 6px;
+  margin-bottom: 3px;
+}
+
+.caltext {
+  width: 70%;
+  padding: 5px;
+  p {
+    margin: 0;
+    padding:2px;
+    color: #2b5cd4;
+    border-radius: 7px;
+    // border: solid 1px;
+    margin-bottom:1px;
+    font-size: 0.9em;
+    display:flex;
+
+  }
+  p.event{
+    color: #2b5cd4;
+  }
+  p.memo{
+    color: #6fb98f;
+  }
+  p.keydate{
+    color: #9d0b0b;
+    font-weight:600;
+    display: flex;
+   }
+  span {
+  margin-left: 10px;
+  }
+}
+}
