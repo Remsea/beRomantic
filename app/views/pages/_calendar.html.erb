@@ -1,57 +1,14 @@
 <div class="calendarcard">
-    <p>Nombre d'évènements</p>
-    <ul>
-      <li><%=PagesController::MONTH[Date.today.month - 2]%> : <%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></li>
-      <li><%=PagesController::MONTH[Date.today.month - 1]%>  : <%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month].keys.size%>
-      <li><%=PagesController::MONTH[Date.today.month]%>  : <%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></li> <%#@calendar[Date.today.year][Date.today.month + 1].keys.size unless [Date.today.year][Date.today.month + 1].nil?%>
-    </ul>
     <!-- choix de la periode -->
-
-    <p>defaut: Jour J +/- 5 jours</p>
-    <%= form_with url: pages_path, method: :get, local: true do |f| %>
-      <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
-      <%= f.number_field(:nb_jour_pre, {min: 0, max: 30}) %>
-      <%= f.label :nb_jour_post, '< ----- Jour J +++++ >' %>
-      <%= f.number_field(:nb_jour_post, {min: 0, max: 30}) %>
-      <%= f.submit :afficher %>
-    <% end %>
-
-    <%unless @shortcalendar.nil? %>
-      <ul>
-      <li><strong><%= Time.current.year.to_s %></strong></li>
-      <%@shortcalendar.each do |key, hash_day| %>
-        <ul>
-          <li><%= PagesController::MONTH[key - 1] %>
-            <%hash_day.each do |key, hash_result| %>
-            <ul>
-                    <%if hash_result.size > 0 %>
-                    <li><%= key.to_s %>
-                    <ul>
-
-                        <%if hash_result.has_key?(:Memo) %>
-                           <%hash_result[:Memo].each do |id| %>
-                              <li><%=current_user.memos.find(id).content%></li>
-                            <%end%>
-                        <%end%>
-                        <%if hash_result.has_key?(:Keydate) %>
-                          <%hash_result[:Keydate].each do |id| %>
-                            <li><strong><%=  current_user.key_dates.find(id).description%></strong></li>
-                          <%end %>
-                        <%end%>
-                        <%if hash_result.has_key?(:Event) %>
-                          <%hash_result[:Event].each do |id| %>
-                            <li><strong style='color:blue;'><%= current_user.events.find(id).title%></strong></li>
-                          <%end %>
-                        <%end%>
-                    </ul>
-                    </li>
-                    <%end%>
-            </ul>
-            <%end%>
-           </li>
-        </ul>
-      <%end%>
-      </ul>
-    <%end%>
-
+  <%= form_with url: pages_path, method: :get, local: true do |f| %>
+    <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
+    <%= f.number_field(:nb_jour_pre, {min: 0, max: 30, value: 5, type: 'hidden'}) %>
+    <%= f.range_field(:nb_jour_post, :in => 0..100, :step => 5, class: 'form-control-range', id: "rangebar") %>
+    <%= f.submit :afficher, class: 'btn btn-outline-secondary' %>
+    <p id="rangevaleur" class="text-center">15</p>
+  <% end %>
+    <!-- <input type="range" class="form-control-range"> -->
+  <div class="containercalendar">
+    <%=  render 'calendarseule',results_sql: @results_sql  %>
+  </div>
 </div>

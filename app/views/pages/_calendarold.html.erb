@@ -1,0 +1,84 @@
+<div class="calendarcard">
+<ul class="list-group list-group-horizontal justify-content-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month - 2]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month - 1]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+</ul>
+
+
+    <!-- choix de la periode -->
+    <%= form_with url: pages_path, method: :get, local: true do |f| %>
+      <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
+      <%= f.number_field(:nb_jour_pre, {min: 0, max: 30, value: 5, type: 'hidden'}) %>
+      <%= f.range_field(:nb_jour_post, :in => 0..30, :step => 1, class: 'form-control-range', id: "rangebar") %>
+      <%= f.submit :afficher %>
+      <p id="rangevaleur">15</p>
+    <% end %>
+    <!-- <input type="range" class="form-control-range"> -->
+
+    <%unless @shortcalendar.nil? %>
+      <ul>
+      <li><strong><%= Time.current.year.to_s %></strong></li>
+      <%@shortcalendar.each do |key, hash_day| %>
+        <ul>
+          <li><%= PagesController::MONTH[key - 1] %>
+            <%hash_day.each do |key, hash_result| %>
+            <ul>
+                    <%if hash_result.size > 0 %>
+                    <li><%= key.to_s %>
+                    <ul>
+
+                        <%if hash_result.has_key?(:Memo) %>
+                           <%hash_result[:Memo].each do |id| %>
+                              <li><%=current_user.memos.find(id).content%></li>
+                            <%end%>
+                        <%end%>
+                        <%if hash_result.has_key?(:Keydate) %>
+                          <%hash_result[:Keydate].each do |id| %>
+                            <li><strong><%=  current_user.key_dates.find(id).description%></strong> <span class="badge badge-success"><%= Date.current.year - current_user.key_dates.find(id).date.year %></span></li>
+                          <%end %>
+                        <%end%>
+                        <%if hash_result.has_key?(:Event) %>
+                          <%hash_result[:Event].each do |id| %>
+                            <li><strong style='color:blue;'><%= current_user.events.find(id).title%></strong></li>
+                          <%end %>
+                        <%end%>
+                    </ul>
+                    </li>
+                    <%end%>
+            </ul>
+            <%end%>
+           </li>
+        </ul>
+      <%end%>
+      </ul>
+    <%end%>
+    <%# raw(ap @results_sql.first['year']) %>
+
+    <% annee = @results_sql.first['year'] %>
+    <% mois = @results_sql.first['month'] %>
+    <% jour = @results_sql.first['day'] %>
+    <p><%= annee.to_i %></p>
+    <p><%= PagesController::MONTH[mois.to_i - 1] %></p>
+    <p><%= jour.to_i %></p>
+    <% @results_sql.each do |resu| %>
+      <p><%= resu['year'].to_i unless resu['year'] == annee %></p>
+      <p><%= PagesController::MONTH[resu['month'].to_i - 1] unless resu['month'] == mois %></p>
+      <p><%= resu['day'].to_i unless resu['day'] == jour %></p>
+      <%= resu['description'] %>
+      <hr>
+      <% annee = resu['year'] %>
+      <% mois = resu['month'] %>
+      <% jour = resu['day'] %>
+      <% end %>
+
+</div>

@@ -6,18 +6,37 @@ class PagesController < ApplicationController
   end
 
   def index
-    # preparer les données pour le calendrier
-    @calendar = calendar_update
     if params[:nb_jour_pre].present? && params[:nb_jour_post].present?
-      @shortcalendar = shortcalendar(@calendar, params[:nb_jour_pre].to_i, params[:nb_jour_post].to_i)
+      @results_sql = calquery(current_user.id, params[:nb_jour_post])
     else
-      @shortcalendar = shortcalendar(@calendar)
+      @results_sql = calquery(current_user.id, 20)
     end
     usereventbuilder
     set_insta
   end
 
   private
+
+  def calquery(id, jour)
+    sql = "with alldate as
+((select 'memo' as categorie, m.id, 0 as diff, m.calendardate as date, extract(year from m.calendardate) as year,extract(month from m.calendardate) as month,extract(day from m.calendardate) as day, m.content as description from memos m
+where m.user_id = #{id} and calendardate is not null)
+union
+(select 'keydate' as categorie, k.id, (extract(year from current_date) - extract(year from k.date)) as diff, k.date + (extract(year from current_date) - EXTRACT(YEAR FROM k.date) || ' years')::interval as date, extract(year from current_date) as year, extract(month from k.date) as month,extract(day from k.date) as day, k.description as description from key_dates k
+where k.user_id = #{id})
+union
+(select 'event' as categorie, e.id, 0 as diff, e.start_date as date, extract(year from e.start_date) as year, extract(month from e.start_date) as month , extract(day from e.start_date) as day ,  case when ((e.title=' ') or (e.title is null)) then LEFT(e.description, 30)
+else REGEXP_REPLACE(e.title,'[\n\r]+','')
+end description
+from user_events u
+inner join events e on e.id = u.event_id
+where u.user_id = #{id} and u.calendar = true ))
+select * from alldate
+where date > current_date - 2 and date < current_date + #{jour.to_i}
+order by date asc;"
+
+  ActiveRecord::Base.connection.execute(sql)
+  end
 
   def usereventbuilder
     # Construire la table user_event avec la sélection des events en fct des activites (score = 1)
@@ -79,140 +98,4 @@ class PagesController < ApplicationController
       @dates << times['created_time']
     end
   end
-
-  # apercu calendrier en fct du jour J et d'une periode avant et après
-  def shortcalendar(calendar, nb_jours_pre = 5, nb_jours_post = 5)
-    current_year = Date.today.year
-    current_month = Date.today.month
-    prev_month = current_month - 1
-    next_month = current_month + 1
-    current_day = Date.today.day
-    jour_fin_mois = Date.today.end_of_month.day
-    intervalle_fin_mois = jour_fin_mois - Date.today.day
-
-    if (nb_jours_pre > current_day) && (nb_jours_post > intervalle_fin_mois)
-      @partialcalendar = calendar[current_year][current_month].select { |k, v| true}
-      @partialcalendar2 = calendar[current_year][current_month - 1].select { |k, v| (k >= (Date.today.prev_month.end_of_month.day - nb_jours_pre + current_day)) }
-      @partialcalendar3 = calendar[current_year][next_month].select { |k, v| (k <= (nb_jours_post - (jour_fin_mois - current_day))) }
-      @partialcalendar =
-      {
-        prev_month => @partialcalendar2,
-        current_month => @partialcalendar,
-        next_month => @partialcalendar3
-      }
-    elsif nb_jours_pre > current_day
-      @partialcalendar = calendar[current_year][current_month].select { |k, v| (k < (current_day + nb_jours_post)) }
-      @partialcalendar2 = calendar[current_year][current_month - 1].select { |k, v| (k >= (Date.today.prev_month.end_of_month.day - nb_jours_pre + current_day)) }
-      @partialcalendar =
-      {
-        prev_month => @partialcalendar2,
-        current_month => @partialcalendar
-      }
-    elsif nb_jours_post > intervalle_fin_mois
-      @partialcalendar = calendar[current_year][current_month].select { |k, v| (k >= current_day) }
-      @partialcalendar2 = calendar[current_year][next_month].select { |k, v| (k <= (nb_jours_post - (jour_fin_mois - current_day))) }
-      @partialcalendar =
-      {
-        current_month => @partialcalendar,
-        next_month => @partialcalendar2
-      }
-
-    else
-
-      @partialcalendar = calendar[current_year][current_month].select { |k, v| (k <= (current_day + nb_jours_post)) && (k >= (current_day - nb_jours_post)) }
-      @partialcalendar =
-      {
-      current_month => @partialcalendar
-      }
-    end
-    return @partialcalendar
-  end
-  # construction d'un hash contenant 3 années mois et jours nestés
-  def calendar_builder
-    calendar = {}
-    yearmonth = {}
-    monthday = {}
-    current_year = Date.today.year
-    scope_year = [current_year.to_i - 1, current_year.to_i, current_year.to_i + 1]
-    months = Date::MONTHNAMES
-
-    scope_year.each do |year|
-      i = 1;
-      12.times do
-        day = 1
-        (Time.days_in_month(i, year) + 1).times do |day|
-          monthday.store(day, {})
-        end
-        yearmonth[i] = monthday
-        i += 1
-        monthday = {}
-      end
-     calendar[year] = yearmonth
-     yearmonth ={}
-    end
-    return calendar
-  end
-
-  # mise à jour du hash calendrier avec les memos id et les keydate ids a la bonne date
-  def calendar_update
-    @calendarbis = calendar_builder
-    current_year = Date.today.year
-
-    current_user.key_dates.each do |keydate_param|
-      myhash = {Keydate: [keydate_param.id]}
-      @calendarbis[current_year][keydate_param.date.month][keydate_param.date.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
-    end
-
-    current_user.memos.each do |memo|
-      unless memo.calendardate.nil?
-        myhash = {Memo: [memo.id]}
-        @calendarbis[memo.calendardate.year][memo.calendardate.month][memo.calendardate.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
-      end
-    end
-    current_user.events.each do |event|
-      if current_user.user_events.find_by(event_id: event.id).calendar == true
-        myhash = {Event: [event.id]}
-        @calendarbis[event.start_date.year][event.start_date.month][event.start_date.day].merge!(myhash) {|key, oldval, newval| oldval.class == Array ? oldval | newval : [newval, oldval]}
-      end
-    end
-
-    return @calendarbis
-  end
-
-  # def calendar_old
-  #   # stocker date, model, id
-  #   @calendarbis = calendar_builder
-  #   @calendar = {}
-  #   current_year = Date.today.year
-  #   current_user.key_dates.each do |keydate_param|
-  #     if @calendar[current_year].nil?
-  #       @calendar[current_year] = {keydate_param.date.month => {keydate_param.date.day => {:Keydate => [keydate_param.id] }}}
-  #     elsif @calendar[current_year][keydate_param.date.month].nil?
-  #       @calendar[current_year][keydate_param.date.month] = {keydate_param.date.day => {:Keydate => [keydate_param.id] }}
-  #     elsif @calendar[current_year][keydate_param.date.month][keydate_param.date.day].nil?
-  #       @calendar[current_year][keydate_param.date.month][keydate_param.date.day] = {:Keydate => [keydate_param.id]}
-  #     elsif @calendar[current_year][keydate_param.date.month][keydate_param.date.day][:keydate].nil?
-  #         @calendar[current_year][keydate_param.date.month][keydate_param.date.day][:keydate] = [keydate_param.id]
-  #         # @calendar[current_year.to_s.to_sym][keydate_param.date.month.to_s.to_sym][keydate_param.date.day.to_s.to_sym][keydate_param.id.to_s.to_sym] = 'Keydate'
-  #     else
-  #         @calendar[current_year][keydate_param.date.month][keydate_param.date.day][:keydate] << keydate_param.id
-  #     end
-  #   end
-
-  #   current_user.memos.each do |memo|
-  #     unless (memo.calendardate == '' || memo.calendardate.year < current_year)
-  #       if @calendar[current_year].nil?
-  #         @calendar[current_year] = {memo.calendardate.month => {memo.calendardate.day => {:Memo => [memo.id] }}}
-  #       elsif @calendar[current_year][memo.calendardate.month].nil?
-  #         @calendar[current_year][memo.calendardate.month] = {memo.calendardate.day => {:Memo => [memo.id] }}
-  #       elsif @calendar[current_year][memo.calendardate.month][memo.calendardate.day].nil?
-  #         @calendar[current_year][memo.calendardate.month][memo.calendardate.day] = {:Memo => [memo.id]}
-  #       elsif @calendar[current_year][memo.calendardate.month][memo.calendardate.day][:Memo].nil?
-  #           @calendar[current_year][memo.calendardate.month][memo.calendardate.day][:Memo] = [memo.id]
-  #       else
-  #           @calendar[current_year][memo.calendardate.month][memo.calendardate.day][:Memo] << memo.id
-  #       end
-  #     end
-  #   end
-  # end
 end

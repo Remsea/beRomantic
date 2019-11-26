@@ -1,0 +1,51 @@
+<% annee = 0 %>
+          <% mois = 0 %>
+          <% jour = 0 %>
+          <% start = true %>
+                  <% results_sql.each do |resu| %>
+                    <% unless resu['year'] == annee %>
+                     <% if start != true %>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                      <% end %>
+                      <div class="annee">
+                      <div class="popannee"><%= resu['year'].to_i  %></div>
+                    <% end %>
+                    <% unless resu['month'] == mois %>
+                      <% if start != true && resu['year'] == annee %>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      <% end %>
+                      <div class="contentmois">
+                        <div class="mois"><%= PagesController::MONTH[resu['month'].to_i - 1] %></div>
+                        <div class="contentjour">
+                    <% end %>
+                    <% unless resu['day'] == jour %>
+                      <% if start != true && resu['month'] == mois %>
+                        </div>
+                        </div>
+                      <% elsif resu['month'] == mois %>
+                        </div>
+                      <% end %>
+                      <div class="jourline">
+                      <div class="popjour"><%= resu['day'].to_i %></div>
+                      <div class="caltext"><p class="<%=resu['categorie']%>"><%= resu['description'] %></p>
+                    <% else %>
+
+                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>  <span class="badge badge-dark p-1"><%=resu['diff'].to_i if resu['diff'] != 0 %></span></p>
+                    <% end %>
+                      <% annee = resu['year'] %>
+                      <% mois = resu['month'] %>
+                      <% jour = resu['day'] %>
+                  <% start = false %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
