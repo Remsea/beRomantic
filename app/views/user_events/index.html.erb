@@ -1,25 +1,45 @@
-<h1>User event list</h1>
-<%= @user_events.first.title unless @user_events.nil? %>
-<p>list des évenements</p>
+<h1>Liste des évènements proposés</h1>
+    <%= @user_events.first.title unless @user_events.nil? %>
+  <p>Liste des évenements</p>
+  <h3>Filtrer par évènement</h3>
+    <%= form_with url: user_events_path, method: :get, local: true do |f| %>
+      <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
+      <%= f.submit :filtrer %>
+    <% end %>
+  <p>Nombre de résultats : <%= @results.length %></p>
 
-<h3>filter par évènement</h3>
-<%= form_with url: user_events_path, method: :get, local: true do |f| %>
-  <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
-<%= f.submit :filtrer %>
-<% end %>
+  <% @results.each do |event| %>
 
-<%= @results.length %>
-<% @results.each do |event| %>
+<div id="container59">
+  <div class="product-details">
+    <h1 id="title12"><%= event.title %></h1>
+    <p class="information"><%= event.description %></p>
+  </div>
 
-        <ul>
-        <li><%= event.category %></li>
-        <li><%= event.title %></li>
-        <li><%= event.description %></li>
-        <li><%= event.address %></li>
-        <li><%= event.start_date %></li>
-        <li><%= event.end_date %></li>
-        <li> <img src="<%= event.photo_url %>" alt="<%= event.title %>"> </li>
-      </ul>
+  <div class="product-image">
+          <img src="<%= event.photo_url %>" alt="<%= event.title %>">
+      <div class="info">
+        <h2 class="opacity18">Informations</h2>
+          <ul>
+            <li><strong>Date : </strong><%= event.start_date %></li>
+            <li><strong>Catégorie : </strong><%= event.category  %></li>
+            <li><strong>Adresse : </strong><%= event.address %></li>
+          </ul>
+      </div>
+  </div>
+</div>
+  <% end %>
 
-<% end %>
+
+<div class="card-product">
+  <div class="transition-image">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div>
+      <div class="card-product-infos">
+        <div class="transition10"></div>
+          <h2>Product name</h2>
+          <p>profonde de nos relations ? Marco da Silva Ferreira pose la question sensible du genre à travers une chorégraphie percutante à la frontière de la danse contemporaine et du hip hop. Bison incarne une danse urbaine futuriste où l'hyper masculinisation et l'univers queer et féministe cohabitent. Six interprètes tentent d'exister par la danse, tout en la déconstruisant, cassant les codes et schémas habituels du rapport homme femme. Les corps se livrent dans une dynamique effrénée aux rythmes sonores puissants et électrisants. Marco da Silva Ferreira est à la recherche d'un langage propre, hybride et muable. Réceptif à la source inépuisable que sont les chemins diversifiés des interprètes, il amène les corps à se livrer au plus profond de leur intimité.N° de téléphone accès P.M.R : 04 78 39 10 02Il est conseillé d'arriver aux Subsistances 15 minutes avant le début de la représentatio</p>
+        </div>
+      </div>
+</div>
 
