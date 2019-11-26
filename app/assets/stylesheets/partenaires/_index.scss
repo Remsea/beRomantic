@@ -40,7 +40,7 @@ margin-left: 16%;
 
 .backimage {
   position:absolute;
-  bottom:10px;
+  bottom:15%;
   left: 150px;
   z-index:1;
   color: $rougefonce;
@@ -54,13 +54,14 @@ margin-left: 16%;
 
 .bpcontainer {
 display: grid;
-grid: auto auto auto 60% / 1fr 3fr 3fr 3fr;
+grid: auto 2fr 2fr 2fr auto / 1fr 3fr 3fr 3fr;
     background-color: $gris2;
 grid-template-areas:
 "side nav nav nav"
 "side date . avatar"
 "side . activite ."
-"side . . interet";
+"side . . interet"
+"side footer footer footer";
 min-width: 100vw;
 min-height: 100vh;
 
