@@ -1,10 +1,14 @@
 import "bootstrap";
+import { initTypedJS } from '../components/init_typed';
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val;
         };
 
 const cacheform = () => {
+  if (document.querySelector('#plusmemo') == null)
+    return;
+
   document.querySelector('#plusmemo').addEventListener("click", order);
 };
 const order = () => {
@@ -31,4 +35,4 @@ const cache = () => {
 }
 
 cacheform();
-
+initTypedJS();
