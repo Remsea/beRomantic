@@ -9,37 +9,21 @@
   <p>Nombre de résultats : <%= @results.length %></p>
 
   <% @results.each do |event| %>
-
-<div id="container59">
-  <div class="product-details">
-    <h1 id="title12"><%= event.title %></h1>
-    <p class="information"><%= event.description %></p>
-  </div>
-
-  <div class="product-image">
-          <img src="<%= event.photo_url %>" alt="<%= event.title %>">
-      <div class="info">
-        <h2 class="opacity18">Informations</h2>
-          <ul>
-            <li><strong>Date : </strong><%= event.start_date %></li>
-            <li><strong>Catégorie : </strong><%= event.category  %></li>
-            <li><strong>Adresse : </strong><%= event.address %></li>
-          </ul>
-      </div>
-  </div>
-</div>
-  <% end %>
-
-
-<div class="card-product">
-  <div class="transition-image">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div>
+  <div class="container56"></div>
+    <div class="card-product">
+      <img src="<%= event.photo_url %>" alt="<%= event.title %>" width="120" height="120" />
       <div class="card-product-infos">
-        <div class="transition10"></div>
-          <h2>Product name</h2>
-          <p>profonde de nos relations ? Marco da Silva Ferreira pose la question sensible du genre à travers une chorégraphie percutante à la frontière de la danse contemporaine et du hip hop. Bison incarne une danse urbaine futuriste où l'hyper masculinisation et l'univers queer et féministe cohabitent. Six interprètes tentent d'exister par la danse, tout en la déconstruisant, cassant les codes et schémas habituels du rapport homme femme. Les corps se livrent dans une dynamique effrénée aux rythmes sonores puissants et électrisants. Marco da Silva Ferreira est à la recherche d'un langage propre, hybride et muable. Réceptif à la source inépuisable que sont les chemins diversifiés des interprètes, il amène les corps à se livrer au plus profond de leur intimité.N° de téléphone accès P.M.R : 04 78 39 10 02Il est conseillé d'arriver aux Subsistances 15 minutes avant le début de la représentatio</p>
+        <h2><%= event.title %></h2>
+        <p><%= event.description %></p>
+        <div class="product-informations">
+          <h2>Informations</h2>
+          <ul>
+            <li>Date : <%= event.start_date %> </li>
+            <li>Catégorie : <%= event.category  %></li>
+            <li>Adresse : <%= event.address %> </li>
+          </ul>
         </div>
       </div>
-</div>
-
+    </div>
+  </div>
+  <% end %>
