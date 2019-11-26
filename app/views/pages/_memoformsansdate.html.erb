@@ -2,12 +2,11 @@
   <div class="card text-center mw-50">
     <div class="card-body p-1">
       <div id="memo">
-  <%= form_with url: memos_path, method: :post, class: "form-inline text-center mb-2" do |f| %>
-    <%= f.text_field :content, class: "form-control mr-1 w-75" %>
-    <%= f.submit :ajouter, class: "btn btn-primary" %>
-  <% end %>
-</div>
-
+        <%= form_with url: memos_path, method: :post, class: "form-inline text-center mb-2" do |f| %>
+          <%= f.text_field :content, class: "form-control mr-1 w-75" %>
+          <%= f.submit :ajouter, class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
-  </div>
+</div>
