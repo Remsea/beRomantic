@@ -1,6 +1,8 @@
 <%= render 'shared/navbar' %>
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= link_to 'love board',pages_path%>
-
+<div>
+  <div class="container">
+    <h1 class="h1-home">Besoin de raviver la flamme dans votre couple ?</h1>
+    <h2 class="h2-home"><span id="banner-typed-text"></span></h2>
+  </div>
+  <%= video_tag "couple_neige.webm", :controls => true, autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video" %>
+</div>
