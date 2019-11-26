@@ -32,12 +32,20 @@
                       <% elsif resu['month'] == mois %>
                         </div>
                       <% end %>
-                      <div class="jourline">
-                      <div class="popjour"><%= resu['day'].to_i %></div>
-                      <div class="caltext"><p class="<%=resu['categorie']%>"><%= resu['description'] %></p>
-                    <% else %>
-
-                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>  <span class="badge badge-dark p-1"><%=resu['diff'].to_i if resu['diff'] != 0 %></span></p>
+                    <div class="jourline">
+                    <div class="popjour"><%= resu['day'].to_i %></div>
+                    <div class="caltext">
+                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>
+                      <% if resu['diff'] != 0 %>
+                      il y a <%=resu['diff'].to_i %> ans
+                      <% end %>
+                      </p>
+                  <% else %>
+                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>
+                      <% if resu['diff'] != 0 %>
+                      il y a <%=resu['diff'].to_i %> ans
+                      <% end %>
+                      </p>
                     <% end %>
                       <% annee = resu['year'] %>
                       <% mois = resu['month'] %>
