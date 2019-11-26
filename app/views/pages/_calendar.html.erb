@@ -5,7 +5,7 @@
     <%= f.number_field(:nb_jour_pre, {min: 0, max: 30, value: 5, type: 'hidden'}) %>
     <%= f.range_field(:nb_jour_post, :in => 0..100, :step => 5, class: 'form-control-range', id: "rangebar") %>
     <%= f.submit :afficher, class: 'btn btn-outline-secondary' %>
-    <p id="rangevaleur" class="text-center">15</p>
+    <p id="rangevaleur" class="text-center">50</p>
   <% end %>
     <!-- <input type="range" class="form-control-range"> -->
   <div class="containercalendar">
