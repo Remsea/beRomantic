@@ -35,4 +35,12 @@ const cache = () => {
 }
 
 cacheform();
+
+
+document.querySelector('#range').addEventListener('change', (e) => {
+  console.log('chagne')
+  document.querySelector("#theSquare").setAttribute('y', 100 - document.querySelector('#range').value)
+});
+
 initTypedJS();
+
