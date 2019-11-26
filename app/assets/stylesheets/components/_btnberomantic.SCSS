@@ -1,0 +1,44 @@
+.btnberomantic {
+  color: #9E1C17;
+  border: solid 1px #999999;
+  border-radius: 20px;
+  padding: 10px 20px;
+  opacity: 0.6;
+  display: inline-block;
+  transition: background 0.3s ease
+
+}
+
+.btnberomantic:hover {
+  opacity: 1;
+}
+
+
+// .btn-medium {
+//   color: #999999;
+//   border: solid 1px #999999;
+//   border-radius: 20px;
+//   padding: 10px 20px;
+//   opacity: 0.6;
+//   display: inline-block;
+//   transition: background 0.3s ease
+
+// }
+
+
+
+// .btn-treehouse {
+//   color: white;
+//   font-weight: bold;
+//   background-color: #6AD58B;
+//   border-radius: 4px;
+//   padding: 15px 25px;
+//   opacity: 0.9;
+//   transition: background 0.3s ease
+//   display: inline-block;
+// }
+
+// .btn-treehouse:hover {
+//   opacity: 1;
+//   background-color: #3bc162;
+// }

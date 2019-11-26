@@ -1,0 +1,153 @@
+.heart:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-family: 'icons';
+  font-size: 21px;
+  text-indent: 0;
+  font-variant: normal;
+  line-height: 21px;
+}
+.heart {
+  position: relative;
+  width: 100px;
+  overflow: inherit;
+  margin: 50px auto;
+  list-style: none;
+  -webkit-animation: animateHeart 2.5s infinite;
+  animation: animateHeart 4.5s infinite;
+}
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 50%;
+  width: 120px;
+    height: 200px;
+    background: red;
+    border-radius: 100px 100px 0 0;
+  -webkit-transform: rotate(-45deg) translateZ(0);
+  transform: rotate(-45deg) translateZ(0);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+.heart:after {
+  left: 26%;
+  -webkit-transform: rotate(45deg) translateZ(0);
+  transform: rotate(45deg) translateZ(0);
+  -webkit-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+}
+@-webkit-keyframes animateHeart {
+  0% {
+    -webkit-transform: scale(0.8);
+  }
+  5% {
+    -webkit-transform: scale(0.9);
+  }
+  10% {
+    -webkit-transform: scale(0.8);
+  }
+  15% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.8);
+  }
+  100% {
+    -webkit-transform: scale(0.8);
+  }
+}
+@keyframes animateHeart {
+  0% {
+    transform: scale(0.8);
+  }
+  5% {
+    transform: scale(0.9);
+  }
+  10% {
+    transform: scale(0.8);
+  }
+  15% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+span {
+  font-family: 'Cantora One', sans-serif;
+  font-size: 64px;
+  position: absolute;
+  top: 165px;
+}
+
+
+// -------------------------------------
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+$bgColor:white;
+$boxColor:#E5E5E5;
+$waterFColor:#9E1C17;
+$waterBColor:red;
+
+
+.box{
+  height: 100px;
+  width: 100px;
+  clip-path: url(#heart);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: $boxColor;
+  overflow: hidden;
+  margin-top: 12px;
+  .water{
+    position: absolute;
+    left: 0;
+    top: -45px;
+    z-index:2;
+    width: 100%;
+    height: 100%;
+    transform:translate(0,100%);
+    background:$waterFColor;
+    transition: all .3s;
+    &_wave{
+      width: 200%;
+      position: absolute;
+      bottom: 100%;
+      &_back {
+        right: 0;
+        fill: $waterBColor;
+        animation: wave-back 1.4s infinite linear;
+      }
+      &_front {
+        left: 0;
+        fill: $waterFColor;
+        margin-bottom: -1px;
+        animation: wave-front .7s infinite linear;
+      }
+    }
+  }
+}
+@keyframes wave-front {
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes wave-back {
+  100% {
+    transform: translate(50%, 0);
+  }
+}
