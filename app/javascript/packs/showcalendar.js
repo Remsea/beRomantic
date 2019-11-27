@@ -2,12 +2,14 @@ const showcalendar = () => {
 if (document.querySelector('#showmore') == null)
     return;
 document.querySelector('#showmore').addEventListener('click', update);
+if (document.querySelector('#showmore').innerText == 'Tout est affiché') { document.querySelector('#showmore').style["boxShadow"] = 'none'};
 }
 
 const update = (event) => {
   let testfin = document.querySelector('#showmore').innerText == 'Tout est affiché';
   if (testfin)
-    {return;}
+    {
+      return;}
   else {
     const nb = event.currentTarget.dataset.number
     const url = `/pages?nb=${nb}`

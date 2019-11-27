@@ -1,17 +1,56 @@
 // Import page-specific CSS files here.
 @import "home";
 
-.cache {
-  display: none;
+
+
+.memoadd {
+  grid-area: memoadd;
+
 }
 
-.memolist > .fadeout {
-  opacity: 0;
+@keyframes show-form-bar {
+  0% {
+    height: 3em;
+  }
+  100% {
+    height: 8em;
+  }
+}
+@keyframes hide-form-bar {
+  0% {
+    height: 8em;
+  }
+  100% {
+    height: 3em;
+  }
+}
+
+.addmemo {
+  transition: all 0.4s 0.4s cubic-bezier(.5,.2,.43,1.33);
+}
+
+.addmemo > .fadeout {
+  opacity: 1;
+}
+.addmemo > .cache {
+  height: 3em;
+  overflow: hidden;
+}
+
+.memoform.show {
+  animation: show-form-bar .8s forwards cubic-bezier(.64,1.87,.64,.64);
+
+}
+.memoform.hide {
+  animation: hide-form-bar .8s forwards cubic-bezier(.64,1.87,.64,.64);
 }
 
 .memoform {
-  transition: opacity 1s ease;
+  // transition: height 1s ease;
   opacity: 1;
+  height: auto;
+  display:flex;
+  flex-direction: column;
 }
 
 #plusmemo {
@@ -118,6 +157,7 @@ grid: auto auto auto auto auto / 12fr 20fr 45% 10fr;
 grid-template-areas:
 "nav nav nav nav"
 ". event event ."
+". memoadd memoadd ."
 ". memolist calendar ."
 ". feed feed ."
 "footer footer footer footer";
