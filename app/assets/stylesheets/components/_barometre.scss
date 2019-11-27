@@ -18,6 +18,7 @@
   list-style: none;
   -webkit-animation: animateHeart 2.5s infinite;
   animation: animateHeart 4.5s infinite;
+  box-shadow: $box-shadow;
 }
 .heart:before,
 .heart:after {
