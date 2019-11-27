@@ -3,5 +3,10 @@
   <div class="containercalendar" id="containercalendar">
     <%=  render 'calendarseule',results_sql: @results_sql  %>
   </div>
-  <div class="showmore" id="showmore" data-number="10">Voir <strong id="num"> <%= @caleventnum[0][0].to_i - @nbvisu.to_i %></strong> dates supplementaires</div>
+  <% if @caleventnum[0][0].to_i - @nbvisu.to_i > 0 %>
+  <div class="showmore" id="showmore" data-number="10"><i class="fas fa-caret-square-down"></i> <strong id="num"> <%= @caleventnum[0][0].to_i - @nbvisu.to_i %></strong> dates en plus</div>
+<% else %>
+  <div class="showmore" id="showmore" data-number="0">Tout est affiché</div>
+<% end %>
+
 </div>
