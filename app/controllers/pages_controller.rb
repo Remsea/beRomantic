@@ -71,7 +71,11 @@ class PagesController < ApplicationController
     data = user['data']
     @images = []
     data.each do |hash|
-      @images << hash['images']['low_resolution']['url']
+      hash_image = {
+        url: hash['images']['low_resolution']['url'],
+        created_time: hash['created_time']
+      }
+      @images << hash_image
     end
 
     @dates = []
