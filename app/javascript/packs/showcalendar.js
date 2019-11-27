@@ -5,6 +5,11 @@ document.querySelector('#showmore').addEventListener('click', update);
 }
 
 const update = (event) => {
+  let testfin = document.querySelector('#showmore').innerText == 'Tout est affiché';
+
+  if (testfin)
+    {return;}
+  else {
   const nb = event.currentTarget.dataset.number
   const url = `/pages?nb=${nb}`
   const monUl = document.querySelector('#showmore')
@@ -12,13 +17,14 @@ const update = (event) => {
 
   fetch(url)
     .then(response => { return response.text() })
-    .then(data => { replacecal(data)})
+    .then(data => { replacecal(data, testfin)})
+  }
+  if (!testfin) {document.querySelector('.spinner-border').remove()};
 }
 
-const replacecal = (data) => {
+const replacecal = (data, testfin) => {
  if (document.querySelector('#containercalendar') == null)
     return;
-  console.log(data);
   document.querySelector('#containercalendar').innerHTML = data;
   document.querySelector('#showmore').dataset.number += 5;
   let num = parseInt(document.querySelector('#num').innerText, 10);
@@ -26,7 +32,6 @@ const replacecal = (data) => {
   document.querySelector('#num').innerText = num - 5 ;
   }
   else {document.querySelector('#showmore').innerHTML = 'Tout est affiché'}
-  document.querySelector('.spinner-border').remove();
 }
 
 export { showcalendar };

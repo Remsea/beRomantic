@@ -17,6 +17,32 @@
   padding: 4px 6px;
   margin-bottom: 10px;
   position: relative;
+  text-decoration: none;
+  list-style: none;
+  margin-left: 10px;
+  display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+
+    p {
+      font-size: 0.8em;
+    }
+
+    span {
+      font-size: 0.6em;
+    }
+    li a {
+      position: relative;
+    }
+
+    i {
+    position: absolute;
+    top: -9px;
+    right: -16px;
+    color: $rougefonce;
+    font-size: 1.4em;
+    }
 }
 
 .list-items {

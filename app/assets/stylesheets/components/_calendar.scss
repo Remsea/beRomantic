@@ -34,18 +34,18 @@ color: #706e6e;
 }
 
 .mois {
-  flex-grow: 1;
+  margin-right: 15px
 }
 
 .contentjour {
   display:flex;
   flex-wrap: wrap;
   width: 60%;
+  flex-grow: 1;
 }
 
 .popjour {
-    flex-grow: 1;
-    width: 28%;
+    width: 18%;
     text-align: center;
     justify-content: center;
     display: flex;

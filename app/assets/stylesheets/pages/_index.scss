@@ -17,8 +17,10 @@
 #plusmemo {
   font-size: 1.6em;
   color:rgb(73, 73, 87);
+  transition: all 0.4s ease;
   &:hover {
     opacity: 0.7;
+    font-size: 1.8em;
   }
 }
 
