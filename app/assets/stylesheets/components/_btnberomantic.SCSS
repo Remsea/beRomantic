@@ -1,17 +1,21 @@
 .btnberomantic {
-  color: #9E1C17;
+  color: white;
   border: solid 1px #999999;
-  border-radius: 20px;
-  padding: 10px 20px;
+  border-radius: 6px;
+  padding: 6px 12px;
   opacity: 0.6;
   display: inline-block;
-  transition: background 0.3s ease
-
+  transition: background 0.3s ease;
+  border: 2px solid #9E1C17;
+  background: #9E1C17;
 }
 
 .btnberomantic:hover {
   opacity: 1;
+  text-decoration: none;
+  color: white;
 }
+
 
 
 // .btn-medium {
