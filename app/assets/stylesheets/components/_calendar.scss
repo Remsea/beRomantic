@@ -1,7 +1,6 @@
 .containercalendar {
 
 
-
 .annee {
   position:relative;
   display: flex;
@@ -84,15 +83,17 @@ color: #706e6e;
 
   }
   p.event{
-    color: #2b5cd4;
+    color: #706e6e;
   }
   p.memo{
-    color: #6fb98f;
+    color: #706e6e;
+    font-style: italic;
   }
   p.keydate{
-    color: #9d0b0b;
-    font-weight:600;
+    color: #706e6e;
+    font-weight:700;
     display: flex;
+    align-items: center;
    }
   span {
   margin-left: 10px;
