@@ -1,4 +1,5 @@
 const listenerrange = () => {
+  if (document.querySelector('#rangebar') == null) return
   document.querySelector("#rangebar").addEventListener('change', affiche);
 }
 

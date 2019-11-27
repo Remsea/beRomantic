@@ -2,7 +2,7 @@ import "bootstrap";
 
 import { listenerrange } from './rangeoutput.js'; // ./ sinon. va chercher dans node module
 import { initTypedJS } from '../components/init_typed';
-
+import { showcalendar } from './showcalendar.js';
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val;
@@ -41,4 +41,5 @@ cacheform();
 listenerrange();
 
 initTypedJS();
+showcalendar();
 

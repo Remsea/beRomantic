@@ -6,10 +6,15 @@ class PagesController < ApplicationController
   end
 
   def index
-    if params[:nb_jour_pre].present? && params[:nb_jour_post].present?
-      @results_sql = calquery(current_user.id, params[:nb_jour_post])
+    # no more useful as the input form has disapeared
+    if params[:nb].present?
+      @results_sql = calquery(current_user.id, 360, params[:nb])
+      render partial: 'calendarseule', locals: { results_sql: @results_sql }
+
     else
-      @results_sql = calquery(current_user.id, 20)
+      @results_sql = calquery(current_user.id, 360, 5)
+      @caleventnum = caleventnumber(current_user.id)
+      @nbvisu = 5
     end
     usereventbuilder
     set_insta
@@ -17,13 +22,32 @@ class PagesController < ApplicationController
 
   private
 
-  def calquery(id, jour)
-    sql = "with alldate as
+  def caleventnumber(id)
+ sql = "with table_cal as
+((select id, current_date as date, 2 as score from key_dates where user_id = #{id})
+union
+(select id, calendardate as date, 1 as score from memos
+where user_id = #{id} and calendardate is not null)
+union
+(select e.id, e.start_date as date, 3 as score
+from user_events u
+inner join events e on e.id = u.event_id
+where u.user_id = #{id}  and u.calendar = true and e.start_date is not null))
+select count(id), sum(score) from table_cal
+where date >= current_date and date >= current_date - 60;"
+ActiveRecord::Base.connection.execute(sql).values
+  end
+
+  def calquery(id, jour, nb_element)
+    sql = "with anni as
+(select 'keydate' as categorie, k.id, (extract(year from current_date) - extract(year from k.date)) as diff, k.date + (extract(year from current_date) - EXTRACT(YEAR FROM k.date) || ' years')::interval as date, extract(year from current_date) as year, extract(month from k.date) as month,extract(day from k.date) as day, k.description as description from key_dates k
+where k.user_id = #{id}), alldate as
 ((select 'memo' as categorie, m.id, 0 as diff, m.calendardate as date, extract(year from m.calendardate) as year,extract(month from m.calendardate) as month,extract(day from m.calendardate) as day, m.content as description from memos m
 where m.user_id = #{id} and calendardate is not null)
 union
-(select 'keydate' as categorie, k.id, (extract(year from current_date) - extract(year from k.date)) as diff, k.date + (extract(year from current_date) - EXTRACT(YEAR FROM k.date) || ' years')::interval as date, extract(year from current_date) as year, extract(month from k.date) as month,extract(day from k.date) as day, k.description as description from key_dates k
-where k.user_id = #{id})
+(select * from anni)
+union
+(select categorie, id, diff + 1, date + (extract(year from current_date) - EXTRACT(YEAR FROM date) + 1 || ' years')::interval as date, year + 1, month, day, description from anni)
 union
 (select 'event' as categorie, e.id, 0 as diff, e.start_date as date, extract(year from e.start_date) as year, extract(month from e.start_date) as month , extract(day from e.start_date) as day ,  case when ((e.title=' ') or (e.title is null)) then LEFT(e.description, 30)
 else REGEXP_REPLACE(e.title,'[\n\r]+','')
@@ -32,8 +56,9 @@ from user_events u
 inner join events e on e.id = u.event_id
 where u.user_id = #{id} and u.calendar = true ))
 select * from alldate
-where date > current_date - 2 and date < current_date + #{jour.to_i}
-order by date asc;"
+where date > current_date - 5 and date < current_date + #{jour.to_i}
+order by date asc
+limit #{nb_element.to_i};"
 
   ActiveRecord::Base.connection.execute(sql)
   end

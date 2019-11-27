@@ -1,8 +1,14 @@
+<% icon = {
+  memo: 'far fa-calendar-check mr-2',
+  event: 'far fa-calendar-alt mr-2',
+  keydate: 'fas fa-birthday-cake mr-2'
+} %>
+
 <% annee = 0 %>
-          <% mois = 0 %>
-          <% jour = 0 %>
-          <% start = true %>
-                  <% results_sql.each do |resu| %>
+<% mois = 0 %>
+<% jour = 0 %>
+<% start = true %>
+  <% results_sql.each do |resu| %>
                     <% unless resu['year'] == annee %>
                      <% if start != true %>
                         </div>
@@ -35,15 +41,19 @@
                     <div class="jourline">
                     <div class="popjour"><%= resu['day'].to_i %></div>
                     <div class="caltext">
-                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>
+                      <p class="<%=resu['categorie']%>">
+                        <i class="<%= icon[resu['categorie'].to_sym] %>"></i>
+                        <%= resu['description'] %>
                       <% if resu['diff'] != 0 %>
-                      il y a <%=resu['diff'].to_i %> ans
+                      - <%=resu['diff'].to_i %> ans
                       <% end %>
                       </p>
                   <% else %>
-                      <p class="<%=resu['categorie']%>"><%= resu['description'] %>
+                      <p class="<%=resu['categorie']%>">
+                      <i class="<%= icon[resu['categorie'].to_sym] %>"></i>
+                      <%= resu['description'] %>
                       <% if resu['diff'] != 0 %>
-                      il y a <%=resu['diff'].to_i %> ans
+                      - <%=resu['diff'].to_i %> ans
                       <% end %>
                       </p>
                     <% end %>

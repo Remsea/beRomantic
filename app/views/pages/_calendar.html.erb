@@ -1,14 +1,7 @@
 <div class="calendarcard">
-    <!-- choix de la periode -->
-  <%= form_with url: pages_path, method: :get, local: true do |f| %>
-    <%# f.label :nb_jour_pre, 'nombre de jours précédent (default: J - 5j jours)' %>
-    <%= f.number_field(:nb_jour_pre, {min: 0, max: 30, value: 5, type: 'hidden'}) %>
-    <%= f.range_field(:nb_jour_post, :in => 0..100, :step => 5, class: 'form-control-range', id: "rangebar") %>
-    <%= f.submit :afficher, class: 'btn btn-outline-secondary' %>
-    <p id="rangevaleur" class="text-center">50</p>
-  <% end %>
-    <!-- <input type="range" class="form-control-range"> -->
-  <div class="containercalendar">
+  <!-- <div><%#  @caleventnum[0][1].to_i %></div> -->
+  <div class="containercalendar" id="containercalendar">
     <%=  render 'calendarseule',results_sql: @results_sql  %>
   </div>
+  <div class="showmore" id="showmore" data-number="10">Voir <strong id="num"> <%= @caleventnum[0][0].to_i - @nbvisu.to_i %></strong> dates supplementaires</div>
 </div>
