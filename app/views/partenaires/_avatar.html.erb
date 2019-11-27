@@ -1,0 +1,6 @@
+<div id="addavatar" class="background-card-light vanish">
+  <%= form_with model: @partenaires.first, method: :patch, local: true,  class: "form-group text-center mt-3" do |f| %>
+    <%= f.file_field :photo, class: "form-item"%>
+    <%= f.submit "valider" %>
+  <% end %>
+</div>

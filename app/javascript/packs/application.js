@@ -32,7 +32,35 @@ const fadeout = () => {
 
 const cache = () => {
    document.querySelector('.memoform').classList.toggle("cache");
-}
+};
+
+
+const cacheaddavatar = () => {
+  if (document.querySelector('#clickavatar') == null) {
+    return;
+  }
+  document.querySelector('#clickavatar').addEventListener("click", open);
+};
+const open = () => {
+  event.preventDefault();
+  if (document.querySelector('#addavatar').classList.contains("vanish"))
+    {cachebis();
+    window.setTimeout(vanish, 10);
+    }
+  else {
+    vanish();
+    window.setTimeout(cachebis, 700);
+  }
+};
+
+  const vanish = () => {
+  document.querySelector('#addavatar').classList.toggle("vanish");
+  };
+
+  const cachebis = () => {
+   document.querySelector('#addavatar').classList.toggle("cachebis");
+  };
 
 cacheform();
 initTypedJS();
+cacheaddavatar();
