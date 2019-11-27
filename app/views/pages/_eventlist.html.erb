@@ -13,7 +13,7 @@
       <span class="eventp"> <%= r.address%> </span>
       <div class="eventdescription">
         <p class="eventp"><%= r.description[0,100]%> <%= r.description.length > 100 ? link_to('[...]', r.link_url) : '' %></p>
-        <% userevent = UserEvent.find_by(event_id: r.id) %>
+        <% userevent = UserEvent.find_by(event_id: r.id, user_id: current_user.id) %>
         <% classc = userevent.calendar == true ? "btnberomantic btnajoutcalendar rounded" : "btnberomantic btnajoutcalendar rounded" %>
         <% text = userevent.calendar == true ? "- " : "+ " %>
         <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc   %>
@@ -21,15 +21,13 @@
 
       <div class="notes">
         <div style="display:flex">
-          <% if UserEvent.find_by(event_id: r.id).score <= 100 %>
+          <% if UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 100 %>
             <%= image_tag 'ratingheart.svg', id:"ratingheart" %>
-          <% elsif UserEvent.find_by(event_id: r.id).score <= 300 %>
+          <% elsif UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 300 %>
 
             <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
             <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
-
-              <%else UserEvent.find_by(event_id: r.id).score <= 300 %>
-
+              <%else UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 300 %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
