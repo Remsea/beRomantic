@@ -1,9 +1,12 @@
   <div id="memolist">
-  <ul>
+  <ul class='p-0'>
     <% current_user.memos.each do |memo| %>
-      <li data-memoid="<%=memo.id%>">
-        <%= link_to "Delete -", memo, method: :delete, remote: true %>
-        <%= memo.content%> / <%= memo.created_at%> / <%= memo.calendardate%></li>
+      <li data-memoid="<%=memo.id%>" class="mini-card">
+        <%= link_to memo, method: :delete, remote: true do %>
+      <i class="fas fa-times-circle cross"></i>
+    <% end %>
+        <!-- <%# link_to "Delete -", memo, method: :delete, remote: true %> -->
+        <p><%= memo.content%></p> <span> <%= memo.created_at.strftime("%m/%d/%Y")%></span></li>
     <% end %>
   </ul>
 </div>
