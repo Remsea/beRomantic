@@ -1,1 +1,27 @@
-// Specific CSS for your home-page
+.h1-home {
+color: #C4BBB8;
+font-weight: bold;
+font-size: 50px;
+//text-shadow: 0 0 10px rgba(255,255,255,.2), 0 0 5px rgba(255,255,255,.2);
+}
+
+.home_video {
+ width: 100vw;
+ height: 100vh;
+ position: absolute;
+ display: flex;
+ justify-content: center;
+ object-fit: cover;
+ top: 0;
+ z-index: -2;
+}
+
+.container {
+  padding: 50px 500px 50px 20px;
+  margin-bottom: 30px;
+  justify-content: start;
+}
+
+.h2-home {
+color: white;
+}

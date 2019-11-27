@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta property="og:title" content="BeRomantic, le premier site qui vous aide à garder votre conjoint">
-  <meta property="og:image" content="facebook-card.jpg">
   <meta property="og:description" content="Vous voulez ranimer la flamme? Faire des petites intentions avec votre conjointe? suivez le guide, beromantic vous aide à avoir une vie de couple heureuse et remplie">
   <meta property="og:site_name" content="BeRomantic"/>
   <title><%= meta_title %></title>
@@ -34,7 +33,10 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+  <%= content_for(:toto) %>
+
   <link rel="manifest" href="/manifest.json" />
   </head>
   <body>

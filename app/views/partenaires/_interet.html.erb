@@ -1,11 +1,13 @@
 
-  <ul>
+  <ul class="list-items">
 <% current_user.partenaire_interests.each do |pinterest| %>
   <% if pinterest.interest.genre == "Centre d'intérêt" %>
   <% piid = pinterest.id%>
-  <li data-PIid="<%=piid%>">
-      <%= link_to "Delete -", partenaire_interest_path(piid), method: :delete, remote: true %>
-      <%= pinterest.interest.title  %>
+  <li data-PIid="<%=piid%>" class="mini-card">
+    <%= pinterest.interest.title  %>
+    <%= link_to partenaire_interest_path(piid), method: :delete, remote: true do %>
+      <i class="fas fa-times cross" style="color: #ffffff;"></i>
+    <% end %>
   </li>
   <% end %>
 <% end %>

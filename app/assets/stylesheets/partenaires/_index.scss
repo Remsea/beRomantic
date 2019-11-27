@@ -2,66 +2,69 @@ input[type='file'] {
   // color: transparent;
 }
 
-.colorbleu {
-  background-color: $bleuclair;
-  border: none;
-  box-shadow: 0px 4px 15px rgba(40,40,40,0.2);
-  color:white;
-}
+// .colorbleu {
+//   background-color: $bleuclair;
+//   border: none;
+//   box-shadow: 0px 4px 15px rgba(40,40,40,0.2);
+//   color:white;
+// }
 
-.dates {
-  grid-area:date;
-  padding-top:15px;
-  z-index:2;
-}
-
-.activites {
-  grid-area:activite;
-  z-index:2;
-}
-
-.interets {
-  grid-area:interet;
-  z-index:2;
-}
 .avatare {
   padding-top:15px;
-  grid-area:avatar;
-  z-index:2;
+  position: absolute;
+  top: 70px;
+  right: 100px;
 }
 
-.positionimage {
-grid-column: 1 / 2;
-grid-row: 2 / 3;
-z-index: 21;
-margin-left: 16%;
+#clickavatar {
+  // padding-left: 5px;
+}
 
+.avatare > .vanish {
+  opacity: 0;
 }
 
 .backimage {
-  position:absolute;
-  bottom:10px;
-  left: 150px;
-  z-index:1;
-  color: $rougefonce;
+  background-image: url('backgroundpartenaire2.svg')
+  // position:absolute;
+  // bottom:15%;
+  // left: 150px;
+  // z-index:1;
+  // color: $rougefonce;
     svg {
     z-index:1;
     color: $rougefonce;
     width: 600px;
     height:auto;
-    }
+  }
 }
 
 .bpcontainer {
-display: grid;
-grid: auto auto auto 60% / 1fr 3fr 3fr 3fr;
-    background-color: $gris2;
-grid-template-areas:
-"side nav nav nav"
-"side date . avatar"
-"side . activite ."
-"side . . interet";
-min-width: 100vw;
-min-height: 100vh;
+  display: grid;
+  grid: auto 2fr 2fr 2fr auto / 1fr 3fr 3fr 3fr;
+  background-color: $gris2;
+  grid-template-areas:
+  "side nav nav nav"
+  "side date . avatar"
+  "side . activite ."
+  "side . . interet"
+  "side footer footer footer";
+  min-width: 100vw;
+  min-height: 100vh;
+}
 
+.bloc-dates-interest {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar-girl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
 }

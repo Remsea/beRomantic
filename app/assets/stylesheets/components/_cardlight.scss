@@ -1,0 +1,40 @@
+//A utiliser pour memo (loveboard), dates clés et activités (informations)
+
+.background-card-light {
+  border-radius: 6px;
+  box-shadow: $box-shadow;
+  //border: solid rgb(220,220,220) 0.2px;
+  background-color: rgba(255,255,255,0.8);
+  margin: 15px;
+  padding: $padding-cards;
+  width: 100%;
+}
+
+.mini-card {
+  background-color: rgba(8, 65, 92, 0.8);
+  color: white;
+  border-radius: 6px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.list-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  grid-row: 1;
+  grid-column-start: auto;
+  list-style: none;
+  padding: 0;
+}
+
+#dates ul {
+  padding: 0;
+}
+
+.cross {
+  position: absolute;
+  right: 10px;
+
+}
