@@ -1,29 +1,27 @@
-<h1>User event list</h1>
-<%= @user_events.first.title unless @user_events.nil? %>
-<p>list des évenements</p>
+<h1>Liste des évènements proposés</h1>
+    <%= @user_events.first.title unless @user_events.nil? %>
+  <h3>Filtrer par évènement</h3>
+    <%= form_with url: user_events_path, method: :get, local: true do |f| %>
+      <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
+      <%= f.submit :filtrer %>
+    <% end %>
+  <p>Nombre de résultats trouvés : <%= @results.length %></p>
 
-<h3>filter par évènement</h3>
-<%= form_with url: user_events_path, method: :get, local: true do |f| %>
-  <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
-<%= f.submit :filtrer %>
-<% end %>
-
-<%= @results.length %>
 <% @results.each do |event| %>
-
-        <ul>
-        <li><%= event.category %></li>
-        <li><%= event.title %></li>
-        <li><%= event.description %></li>
-        <li><%= event.address %></li>
-        <li><%= event.start_date %></li>
-        <li><%= event.end_date %></li>
-        <li> <img src="<%= event.photo_url %>" alt="<%= event.title %>"> </li>
-      </ul>
-
+  <div class="container56">
+    <div class="card-product">
+      <div class="image16"><img src="<%= event.photo_url %>" alt="<%= event.title %>" width="120" height="120" /></div>
+      <div class="card-product-infos">
+        <h2 class="titre13"><%= event.title %></h2>
+          <p class="text13"><%= event.description %></p>
+            <ul class="info14">
+              <li>Date : <%= event.start_date %> </li>
+              <li>Catégorie : <%= event.category  %></li>
+              <li>Adresse : <%= event.address %> </li>
+              <a href="<%= event.link_url %>" class="reserver10">Réserver</a>
+            </ul>
+      </div>
+    </div>
+  </div>
 <% end %>
 
-
-​
-
-​
