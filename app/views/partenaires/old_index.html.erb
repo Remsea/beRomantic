@@ -1,0 +1,76 @@
+
+<div class="bpcontainer">
+
+<div class="backimage">
+ <%= show_svg('backgroundpartenaire2.svg') %>
+</div>
+
+  <div class="navs sticky">
+      <%= render 'pages/toper' %>
+  </div>
+
+  <div class="sides">
+      <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
+  </div>
+
+  <div class="positionimage">
+      <%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, crop: :thumb, radius: 50, gravity: :face %>
+  </div>
+
+
+  <div class="dates">
+    <h2 class="ml-3" >📆 Le basique, connaître ses dates clefs</h2>
+      <div class="maincard">
+      <%= render 'partenaires/formdate' %>
+      <%= render 'partenaires/dateclef' %>
+    </div>
+  </div>
+
+  <div class="avatare">
+    <h2 class="ml-3" >Ajouter une photo 👱🏼‍♀️</h2>
+    <div class="maincard colorbleu">
+    <%= form_with model: @partenaires.first, method: :patch, local: true,  class: "form-group text-center mt-3" do |f| %>
+          <%= f.file_field :photo, class: "form-item"%>
+        <%= f.submit "valider" %>
+    <% end %>
+    </div>
+  </div>
+
+
+  <div class="activites">
+    <h2 class="ml-3" > 🎤 🎬 🎻 Facile, ses activités culturelles préférées</h2>
+    <div class="maincard">
+        <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+          <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
+          <%= f.submit :ajouter %>
+        <% end %>
+      <div id="activity" >
+        <%= render 'partenaires/activites' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="interets">
+    <h2 class="ml-3" >🏌🏻‍♀️⛷🧘🏻‍♀️🦜⚓️ Un peu plus détaillé, quelques centres d'intérêts</h2>
+    <div class="maincard">
+     <!-- , local: true pour le form_with evite ajax -->
+      <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+        <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
+        <%= f.submit :ajouter %>
+      <% end %>
+      <div id="interets" >
+        <%= render 'partenaires/interet' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="footerdash">
+    <%= render '/pages/footer' %>
+  </div>
+
+</div>
+
+
+
+
+
