@@ -1,0 +1,14 @@
+<ul class="list-group list-group-horizontal justify-content-center">
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month - 2]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month - 1].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month - 1]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center py-1">
+    <%=PagesController::MONTH[Date.today.month]%>
+    <span class="badge badge-primary badge-pill ml-3"><%= @calendar[Date.today.year][Date.today.month + 1].select {|k,v| v.size > 0 }.size%></span>
+  </li>
+</ul>
