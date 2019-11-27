@@ -15,21 +15,29 @@ const cacheform = () => {
   document.querySelector('#plusmemo').addEventListener("click", order);
 };
 const order = () => {
-  if (document.querySelector('.memoform').classList.contains('fadeout'))
-    {cache();
-    window.setTimeout(fadeout, 10);
-
+  if (document.querySelector('.memoform').classList.contains('show'))
+    {hide();
     }
   else {
-    fadeout();
-    window.setTimeout(cache, 700);
+    show();
+    // window.setTimeout(show, 700);
   }
 
 };
 
+const show = () => {
+  document.querySelector('.memoform').classList.remove("hide");
+  document.querySelector('.memoform').classList.remove("cache");
+  document.querySelector('.memoform').classList.add("show");
+
+}
+const hide = () => {
+document.querySelector('.memoform').classList.remove("show");
+  document.querySelector('.memoform').classList.add("hide");
+   document.querySelector('.memoform').classList.add("cache");
+}
 const fadeout = () => {
   document.querySelector('.memoform').classList.toggle("fadeout");
-
 
 };
 
