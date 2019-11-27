@@ -1,5 +1,8 @@
 import "bootstrap";
+
+import { listenerrange } from './rangeoutput.js'; // ./ sinon. va chercher dans node module
 import { initTypedJS } from '../components/init_typed';
+
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val;
@@ -62,5 +65,7 @@ const open = () => {
   };
 
 cacheform();
+listenerrange();
+
 initTypedJS();
 cacheaddavatar();

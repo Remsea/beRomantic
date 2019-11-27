@@ -1,8 +1,8 @@
 
 .eventcard {
-  height: 400px;
-  width: 330px;
-  margin: 10px auto;
+  height: 200px;
+  width: 400px;
+  margin: 10px;
   box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: flex-end;
@@ -12,6 +12,7 @@
 
 .eventimg {
   position: absolute;
+  width: 200px;
   top: 0;
   bottom: 0;
   transition: transform 0.3s;
@@ -52,7 +53,7 @@
 
     }
 
-    .rounded {
+.rounded {
       border-radius: 100%!important;
       height: 40px;
       width:40px;

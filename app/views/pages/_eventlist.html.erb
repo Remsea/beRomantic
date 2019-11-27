@@ -1,4 +1,4 @@
-<div class="calendarcard scrollable lightshadow">
+<div class="maincard scrollable lightshadow">
   <%  @userevents.each do |r|%>
   <div class="eventcard">
     <div class="notes">
@@ -25,6 +25,6 @@
   </div>
   <% end %>
   <div class=eventlist>
-    <%= link_to 'event list', user_events_path, class:'btn btn-outline-danger' %>
+    <%= link_to 'Liste des évènements', user_events_path, class:'btnberomantic' %>
   </div>
 </div>
