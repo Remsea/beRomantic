@@ -1,30 +1,49 @@
 <div class="maincard scrollable lightshadow">
   <%  @userevents.each do |r|%>
   <div class="eventcard">
-    <div class="notes">
-      <div> <%= UserEvent.find_by(event_id: r.id).score%>/ 100</div>
-    </div>
      <%= image_tag r.photo_url, class:"eventimg"%>
     <div class="eventinfos">
-      <h2><%= r.title || r.category%> </h2>
-      <p class=eventdate>
+      <h2 class="eventh2"><%= r.title || r.category%> </h2>
+      <p class="eventdate eventp">
         Du <%= r.start_date %> au <%= r.end_date %>
       </p>
       <span>
       <i class="fas fa-map-marker-alt" style="color:#9E1C17"></i>
       </span>
-      <%= r.address %>
+      <span class="eventp"> <%= r.address%> </span>
       <div class="eventdescription">
-        <p><%= r.description[0,100]%> <%= r.description.length > 100 ? link_to('[...]', r.link_url) : '' %></p>
+        <p class="eventp"><%= r.description[0,100]%> <%= r.description.length > 100 ? link_to('[...]', r.link_url) : '' %></p>
         <% userevent = UserEvent.find_by(event_id: r.id) %>
-        <% classc = userevent.calendar == true ? "btn btn-outline-danger rounded" : "btn btn-danger rounded" %>
+        <% classc = userevent.calendar == true ? "btnberomantic btnajoutcalendar rounded" : "btnberomantic btnajoutcalendar rounded" %>
         <% text = userevent.calendar == true ? "- " : "+ " %>
         <%= link_to text, user_event_path(userevent.id), method: :patch, local:true, class: classc   %>
+      </div>
+
+      <div class="notes">
+        <div style="display:flex">
+          <% if UserEvent.find_by(event_id: r.id).score <= 100 %>
+            <%= image_tag 'ratingheart.svg', id:"ratingheart" %>
+          <% elsif UserEvent.find_by(event_id: r.id).score <= 300 %>
+
+            <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
+            <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
+
+              <%else UserEvent.find_by(event_id: r.id).score <= 300 %>
+
+              <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
+              <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
+              <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
+
+            <%end%>
+        </div>
       </div>
     </div>
   </div>
   <% end %>
-  <div class=eventlist>
-    <%= link_to 'Liste des évènements', user_events_path, class:'btnberomantic' %>
+  <div class="eventlist">
+    <%= link_to image_tag('arrow-point-to-right-red.png', id:"rightarrow"), user_events_path %>
   </div>
 </div>
+
+
+
