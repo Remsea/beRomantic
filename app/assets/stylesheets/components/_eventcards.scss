@@ -1,8 +1,8 @@
 
 .eventcard {
-  height: 200px;
-  width: 400px;
-  margin: 10px;
+  height: 166px;
+  width: 300px;
+  margin-right: 10px;
   box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: flex-end;
@@ -12,7 +12,7 @@
 
 .eventimg {
   position: absolute;
-  width: 200px;
+  width: auto;
   top: 0;
   bottom: 0;
   transition: transform 0.3s;
@@ -23,13 +23,13 @@
 }
 
 .eventinfos {
-  padding: 21px 10px 10px;
+  padding: 8px 10px 10px;
   background: white;
-  max-height: 135px;
+  max-height: 65px;
   transition: max-height ease 0.3s;
   overflow: hidden;
   z-index: 10;
-  text-align: justify;
+  text-align: left;
 }
 
 .eventcard:hover .eventinfos {
@@ -38,13 +38,13 @@
 
 .notes {
   position: absolute;
-  top: 5px;
-  right: 7px;
+  bottom: 2px;
+  right: 22px;
   z-index: 1;
-  background: white;
-  width: 55px;
-  height: 55px;
-  border-radius: 100%;
+  background: transparent;
+  width: 27px;
+  height: 20px;
+  border-radius: 20%;
   text-align: center;
   opacity: 0.9;
   display: flex;
@@ -55,8 +55,8 @@
 
 .rounded {
       border-radius: 100%!important;
-      height: 40px;
-      width:40px;
+      height: 20px;
+      width:20px;
     }
 
 .eventdescription {
@@ -68,7 +68,11 @@
 }
 
 .eventlist {
-  margin-left: 125px;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 
 }
 
@@ -77,3 +81,74 @@
  font-style: italic;
 }
 
+.cardcontainer {
+  grid-template-rows: repeat(4, 1fr);
+  position: absolute;
+}
+
+.eventh2{
+  font-size: 12px;
+  font-weight:bold;
+  text-overflow: "…";
+}
+
+.eventp{
+  font-size: 10px;
+}
+
+.btnajoutcalendar {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+#ratingheart{
+  width:15px;
+  height:15px;
+  margin-left:4px;
+}
+
+#rightarrow{
+  width: 86px;
+}
+
+#rightarrow:hover {
+  width: 100px;
+  transition: max-height ease 0.3s;
+
+}
+// ---------------------------------------------------------------------------------------
+
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
