@@ -1,0 +1,10 @@
+.btn-white{
+  color: white;
+  background: #00000030;
+  margin-right: 8px;
+
+  &:hover {
+    color: white;
+    background: #00000080;
+  }
+}

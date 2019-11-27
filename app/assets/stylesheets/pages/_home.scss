@@ -1,3 +1,9 @@
+.container {
+  padding: 50px 500px 50px 20px;
+  margin-bottom: 30px;
+  justify-content: start;
+}
+
 .h1-home {
 color: #C4BBB8;
 font-weight: bold;
@@ -14,12 +20,6 @@ font-size: 50px;
  object-fit: cover;
  top: 0;
  z-index: -2;
-}
-
-.container {
-  padding: 50px 500px 50px 20px;
-  margin-bottom: 30px;
-  justify-content: start;
 }
 
 .h2-home {
