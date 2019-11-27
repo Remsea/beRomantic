@@ -12,7 +12,9 @@
       </span>
       <span class="eventp"> <%= r.address%> </span>
       <div class="eventdescription">
-        <p class="eventp"><%= r.description[0,100]%> <%= r.description.length > 100 ? link_to('[...]', r.link_url) : '' %></p>
+        <p class="eventp">
+          <%= r.description[0,100] if !r.description.nil?%>
+          <%= ((!r.description.nil?) && (r.description.length > 100)) ? link_to('[...]', r.link_url) : '' %></p>
         <% userevent = UserEvent.find_by(event_id: r.id, user_id: current_user.id) %>
         <% classc = userevent.calendar == true ? "btnberomantic btnajoutcalendar rounded" : "btnberomantic btnajoutcalendar rounded" %>
         <% text = userevent.calendar == true ? "- " : "+ " %>
