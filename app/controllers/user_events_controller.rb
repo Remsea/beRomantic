@@ -3,8 +3,6 @@ class UserEventsController < ApplicationController
     if params[:category].present?
       # @userevents = current_user.events.where(category: params[:category])
       query = "events.category = \'#{params[:category]}\'"
-      puts "--------------"
-      puts "--------------"
     else
       @interests = current_user.interests.map { |interest| interest.title.downcase }
       query = ""

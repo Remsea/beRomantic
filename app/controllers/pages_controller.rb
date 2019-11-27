@@ -15,9 +15,10 @@ class PagesController < ApplicationController
       @results_sql = calquery(current_user.id, 360, 5)
       @caleventnum = caleventnumber(current_user.id)
       @nbvisu = 5
+      usereventbuilder
+      set_insta
     end
-    usereventbuilder
-    set_insta
+
   end
 
   private
@@ -94,7 +95,7 @@ limit #{nb_element.to_i};"
     centre_interet.each do |interet|
       @pgsearch = Event.search_by_desc_title_url(interet).with_pg_search_rank
           @pgsearch.each do |r|
-            event = UserEvent.find_by(event_id: r.id)
+            event = UserEvent.find_by(event_id: r.id, user_id: current_user.id)
             unless event.nil?
              event.score += ((r.pg_search_rank * 10).to_f).round
               event.save!
