@@ -6,6 +6,7 @@ background-color: rgb(255,255,255);
 margin: 15px;
 padding: 10px 10px;
 display: flex;
+position: relative;
 }
 
 .maincard.lightshadow{
@@ -17,9 +18,9 @@ display: flex;
 
 .maincardevent {
   padding-top: 50px;
-    padding-left: 15px;
-    padding-bottom: 25px;
-    margin-bottom: 50px;
+  padding-left: 15px;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
 }
 
 .divtitleeventcard {
@@ -27,4 +28,11 @@ display: flex;
   left: 3px;
   height: 100%;
   top: -5px;
+}
+
+.maincardfeed {
+  padding-top: 40px;
+  padding-left: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 65px;
 }
