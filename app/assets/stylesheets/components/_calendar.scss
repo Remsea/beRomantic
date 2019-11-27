@@ -12,7 +12,7 @@
   position: absolute;
     left: -20px;
     top: 10px;
-    border-radius: 7px;
+    border-radius: $border-radius;
     background-color: white;
     font-size: 0.8em;
     color: #2b5cd4;
@@ -25,7 +25,7 @@
 display:flex;
 flex-wrap: wrap;
 width: 100%;
-border-radius: 7px;
+border-radius: $border-radius;
 background-color: $gris2;
 padding: 10px;
 margin-bottom: 3px;
@@ -65,7 +65,7 @@ color: #706e6e;
   width: 100%;
   background-color: rgba(250,250,250,0.4);
   border: solid 1px lightgray;
-  border-radius: 6px;
+  border-radius: $border-radius;
   margin-bottom: 3px;
 }
 

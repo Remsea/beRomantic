@@ -127,6 +127,8 @@ francais_chiffre = {
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
+    link_url: doc.search('.underline').attribute('href').nil? ? "no_url" : doc.search('.underline').attribute('href').value,
+
     })
     puts i.title
     puts i.description
@@ -145,6 +147,7 @@ francais_chiffre = {
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
+    link_url: doc.search('.btn btn-large btn-booking btn_category').attribute('href').nil? ? "no_url" : doc.search('.btn btn-large btn-booking btn_category').attribute('href').value,
     })
     puts i.title
     puts i.description
@@ -163,6 +166,7 @@ francais_chiffre = {
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
+    link_url: doc.search('.btn btn-large btn-booking btn_category').attribute('href').nil? ? "no_url" : doc.search('.btn btn-large btn-booking btn_category').attribute('href').value,
     })
     puts i.title
     puts i.description
@@ -181,6 +185,7 @@ francais_chiffre = {
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
+    link_url: doc.search('.btn btn-large btn-booking btn_category').attribute('href').nil? ? "no_url" : doc.search('.btn btn-large btn-booking btn_category').attribute('href').value,
     })
     puts i.title
     puts i.description
@@ -199,6 +204,7 @@ francais_chiffre = {
     category: event_category_splited,
     address: doc.search('p.place').text,
     photo_url: doc.search('img.img-polaroid').attribute('src').value,
+    link_url: doc.search('.btn btn-large btn-booking btn_category').attribute('href').nil? ? "no_url" : doc.search('.underline').attribute('href').value,
     })
     puts i.title
     puts i.description

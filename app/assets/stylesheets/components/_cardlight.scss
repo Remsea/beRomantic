@@ -1,7 +1,7 @@
 //A utiliser pour memo (loveboard), dates clés et activités (informations)
 
 .background-card-light {
-  border-radius: 6px;
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
   //border: solid rgb(220,220,220) 0.2px;
   background-color: rgba(255,255,255,0.8);
@@ -13,7 +13,7 @@
 .mini-card {
   background-color: rgba(8, 65, 92, 0.8);
   color: white;
-  border-radius: 6px;
+  border-radius: $border-radius;
   padding: 4px 6px;
   margin-bottom: 10px;
   position: relative;

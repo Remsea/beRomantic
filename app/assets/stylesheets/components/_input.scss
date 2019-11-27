@@ -1,4 +1,4 @@
 input[type='text'], input[type='date'] {
-  border-radius: 8px;
+  border-radius: $border-radius;
   border: solid 1px $gris2;
 }

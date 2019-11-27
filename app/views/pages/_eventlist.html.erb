@@ -1,4 +1,7 @@
-<div class="maincard scrollable lightshadow">
+<div class="maincard scrollable lightshadow maincardevent">
+  <div class="divtitleeventcard">
+  <h2 class="ml-2 mt-3 text-center" >Des idées de sortie !</h2>
+  </div>
   <%  @userevents.each do |r|%>
   <div class="eventcard">
      <%= image_tag r.photo_url, class:"eventimg"%>
@@ -23,15 +26,14 @@
         <div style="display:flex">
           <% if UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 100 %>
             <%= image_tag 'ratingheart.svg', id:"ratingheart" %>
-          <% elsif UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 300 %>
+          <% elsif UserEvent.find_by(event_id: r.id, user_id: current_user.id).score >= 101 %>
 
             <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
             <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
-              <%else UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 300 %>
+              <%else UserEvent.find_by(event_id: r.id, user_id: current_user.id).score >= 301 %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
-
             <%end%>
         </div>
       </div>

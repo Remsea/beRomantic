@@ -53,7 +53,7 @@ img:hover + .card-product-infos .product-informations {
   overflow: hidden;
   height: auto;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: $box-shadow;
   display: flex;
   align-items: center;
   width: 85%;
