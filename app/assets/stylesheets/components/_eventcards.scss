@@ -123,6 +123,19 @@
   box-shadow: none;
   opacity: 0.6;
 }
+
+.eventbooked {
+  display:none
+}
+
+.imgchecked {
+  position: absolute;
+  width: 35px;
+  height: 45px;
+  z-index: 3;
+  top: 0px;
+  left: 4px;
+}
 // ---------------------------------------------------------------------------------------
 
 .card-product {
