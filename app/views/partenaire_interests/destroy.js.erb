@@ -1,2 +1,8 @@
+
+<% if (@type == 'activity')%>
+var html = '<%= j render "partenaire_interests/link_toogle_partenaire", interest: @interest %>';
+document.querySelector("[data-interest-id='<%= @interest.id %>']").innerHTML = html;
+<% else %>
 document.querySelector("[data-PIid='<%= @tdinteret.id %>']")
   .remove();
+<% end %>
