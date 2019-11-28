@@ -1,11 +1,11 @@
   <div class="listoe">
       <% current_user.memos.each do |memo| %>
-        <div data-memoid="<%=memo.id%>" class="mini-card">
+        <div data-memoid="<%=memo.id%>" class="mini-card-memo-loveboard">
           <%= link_to memo, method: :delete, remote: true do %>
         <i class="fas fa-times-circle cross"></i>
       <% end %>
           <!-- <%# link_to "Delete -", memo, method: :delete, remote: true %> -->
-          <p><%= memo.content%></p> <span> <%= memo.created_at.strftime("%m/%d/%Y")%></span>
+          <p class="p-memo"><%= memo.content%></p> <span> <%= memo.created_at.strftime("%m/%d/%Y")%></span>
         </div>
       <% end %>
 </div>

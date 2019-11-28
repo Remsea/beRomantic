@@ -3,7 +3,6 @@
 <!--<div class="bpcontainer">-->
 <div>
   <div class="backimage">
-   <%#= show_svg('backgroundpartenaire2.svg') %>
 
   <div class="navs sticky">
       <%= render 'pages/toper' %>
@@ -51,7 +50,6 @@
             <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
             <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
             <% end %>
-            <%#= render 'partenaires/formactivities' %>
           <div id="activity" >
             <%= render 'partenaires/activites' %>
           </div>
@@ -60,7 +58,7 @@
 
     <div class="bloc-dates-interest">
       <div class="background-card-light">
-        <h2><i class="far fa-calendar-alt" style="color: #9E1C17;"></i> Vos dates importantes</h2>
+        <h2></i> Vos dates importantes</h2>
         <h3>Pour t'en souvenir et marquer le coup !</h3>
           <%= render 'partenaires/formdate' %>
           <%= render 'partenaires/dateclef' %>
@@ -70,15 +68,17 @@
     <h2></i> Ses centres d'intérêt</h2>
     <h3>Pour être au plus près de ses envies !</h3>
      <!-- , local: true pour le form_with evite ajax -->
+     <div class="margin-forms">
       <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
         <%= f.select(
           :interest_id,
           options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"),:id,:title),
           { include_blank: true },
-          class: 'select2')
+          class:"encart-forms")
           %>
         <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
       <% end %>
+      </div>
       <div id="interets" >
         <%= render 'partenaires/interet' %>
       </div>

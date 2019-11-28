@@ -62,7 +62,7 @@
     }
 }
    .listoe {
-      display:flex;
+      display: flex;
       justify-content:center;
       align-items: flex-start;
       width: 370px;
@@ -112,12 +112,13 @@
 
 .encart-forms {
   color: #161616;
-  border: solid 1px #161616;
+  border: solid 1px #C4BBB8;
   border-radius: $border-radius;
-  padding: 6px 12px;
+  padding: 8px 12px;
   opacity: 0.6;
   display: inline-block;
   background: white;
+  margin-bottom: 5px;
 }
 
 .mini-cards-interest {
@@ -134,4 +135,8 @@
     border-radius: 50px;
     opacity: 1;
   }
+}
+
+.margin-forms {
+  margin-bottom: 20px;
 }

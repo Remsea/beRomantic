@@ -1,48 +1,45 @@
 <div class="brcontainer">
 
-    <div class="navs sticky">
-      <%= render 'toper' %>
+  <div class="navs sticky">
+    <%= render 'toper' %>
+  </div>
+
+  <div class="feeds">
+    <%= render 'feed' %>
+  </div>
+
+  <div class="addmemo memoadd">
+    <div class="maincard memoform cache hide">
+      <div class="d-flex">
+        <i class="fas fa-plus-square mr-3" id="plusmemo"></i><h2>Annoter ses remarques importantes</h2>
+      </div>
+      <div class="d-flex">
+        <h3 class="margin77">Ajouter un rappel ▼</h3>
+      </div>
+      <div class="d-flex flex-column text-center mw-50">
+        <%=render 'partenaires/formmemo' %>
+      </div>
     </div>
+  </div>
 
-
-
-      <div class="feeds">
-        <%= render 'feed' %>
-      </div>
-
-      <div class="addmemo memoadd">
-        <div class="maincard memoform cache hide">
-          <div class="d-flex">
-            <i class="fas fa-plus-square mr-3" id="plusmemo"></i><h2>Annoter ses remarques importantes</h2>
-          </div>
-          <div class="d-flex">
-            <h3 class="margin77">ajouter un rappel ▼</h3>
-          </div>
-          <div class="d-flex flex-column text-center mw-50">
-              <%=render 'partenaires/formmemo' %>
-          </div>
+  <div class="memolist">
+    <div class="cardsmemocontainer">
+      <div class="d-flex flex-column justify-content-between align-items-center">
+        <div id="memolist">
+          <%= render 'partenaires/memo' %>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="memolist">
-        <div class="cardsmemocontainer">
-          <div class="d-flex flex-column justify-content-between align-items-center">
-            <div id="memolist">
-            <%= render 'partenaires/memo' %>
-          </div>
-          </div>
-        </div>
-      </div>
+  <div class="calendar">
+    <%= render 'calendar' %>
+  </div>
+  <div class="events">
+    <%= render 'eventlist' %>
+  </div>
 
-
-      <div class="calendar">
-        <%= render 'calendar' %>
-      </div>
-      <div class="events">
-        <%= render 'eventlist' %>
-      </div>
-
-      <div class="footerdash">
-        <%= render '/pages/footer' %>
-      </div>
+  <div class="footerdash">
+    <%= render '/pages/footer' %>
+  </div>
 </div>
