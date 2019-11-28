@@ -1,13 +1,15 @@
 <%= render 'shared/navbar' %>
 <div class="container789">
-  <h1>Liste des évènements proposés</h1>
+  <h1 class="haris456">Liste des évènements proposés</h1>
   <%= @user_events.first.title unless @user_events.nil? %>
-  <h3>Filtrer par évènement</h3>
-  <%= form_with url: user_events_path, method: :get, local: true do |f| %>
-    <%= f.select(:category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category)) %>
-    <%= f.submit :filtrer, class:'btnberomantic' %>
+  <h3 class="haris500">Filtrer par évènement</h3>
+
+  <%= form_with url: user_events_path, class:'haris423', method: :get, local: true do |f| %>
+    <%= f.select :category, options_from_collection_for_select(Event.select(:category).distinct, :category, :category), {}, :class => 'haris900' %>
+    <%= f.submit :Filtrer, class:'btnberomantic' %>
   <% end %>
-  <p>Nombre de résultats trouvés : <%= @results.length %></p>
+
+  <p class="haris18">Nombre de résultats trouvés : <%= @results.length %></p>
 </div>
 
 <% @results.each do |event| %>
