@@ -20,8 +20,11 @@
       </defs>
     </svg>
 
+
+    <% score = [(@caleventnum[0][1].to_i * 80 / 100) + 20, 120].min %>
+
     <div class="box">
-      <div id="water" class="water">
+      <div id="water" class="water" style="top: -<%= score %>px" data-score="<%= @caleventnum[0][1].to_i %>">
         <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
           <use xlink:href="#wave"></use>
         </svg>
