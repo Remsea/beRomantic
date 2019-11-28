@@ -222,9 +222,9 @@ end
 
 puts 'Creating user'
 paul = User.create!(
-  email: 'a@a.com',
+  email: 'remi@gmail.com',
   password: "azertyuiop",
-  first_name: "Paul",
+  first_name: "Remi",
   city: "Lyon",
   photo: "homme.jpg"
   )
@@ -243,13 +243,6 @@ Partenaire.create!(
   user: paul
   )
 
-puts 'Creating key date'
-birthday = KeyDate.create!(
-  date: "25/11/1990",
-  description: "Anniversaire Elodie",
-  user: paul
-  )
-
 first_date = KeyDate.create!(
   date: "26/11/2012",
   description: "Premier rendez-vous",
@@ -262,9 +255,27 @@ wedding = KeyDate.create!(
   user: paul
   )
 
+presentation = KeyDate.create!(
+  date: "29/11/2019",
+  description: "Présentation Demo Day",
+  user: paul
+  )
+
 dog_birthday = KeyDate.create!(
-  date: "28/11/2017",
-  description: "Anniversaire Titi (son chien)",
+  date: "06/12/2017",
+  description: "Anniversaire du chien",
+  user: paul
+  )
+road_trip = KeyDate.create!(
+  date: "11/01/1961",
+  description: "Anniversaire belle-maman",
+  user: paul
+  )
+
+puts 'Creating key date'
+birthday = KeyDate.create!(
+  date: "02/03/1987",
+  description: "Anniversaire Susan",
   user: paul
   )
 
@@ -300,12 +311,12 @@ Interest.create(
   genre: "Activité"
   )
 Interest.create(
-  title: "Loutres",
-  category: "Animaux",
+  title: "Running",
+  category: "Sport",
   genre: "Centre d'intérêt"
   )
 Interest.create(
-  title: "Chiens",
+  title: "Animaux",
   category: "Animaux",
   genre: "Centre d'intérêt"
   )
@@ -315,12 +326,12 @@ Interest.create(
   genre: "Centre d'intérêt"
   )
 Interest.create(
-  title: "Cross fit",
+  title: "Salsa",
   category: "Sport",
   genre: "Centre d'intérêt"
   )
 Interest.create(
-  title: "Ping Pong",
+  title: "Cross Fit",
   category: "Sport",
   genre: "Centre d'intérêt"
   )
@@ -337,5 +348,50 @@ Interest.create(
 Interest.create(
   title: "Classique",
   category: "Musique",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Bateau",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Pilates",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Hip Hop",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Flamenco",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Moto",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Volley",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Violon",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Piano",
+  category: "Sport",
+  genre: "Centre d'intérêt"
+  )
+Interest.create(
+  title: "Guitare",
+  category: "Sport",
   genre: "Centre d'intérêt"
   )
