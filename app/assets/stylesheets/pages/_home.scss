@@ -2,12 +2,14 @@
   padding: 50px 500px 50px 20px;
   margin-bottom: 30px;
   justify-content: start;
+  margin-top: 160px;
 }
 
 .h1-home {
-color: #C4BBB8;
+color: white;
 font-weight: bold;
 font-size: 50px;
+margin-bottom: 25px;
 //text-shadow: 0 0 10px rgba(255,255,255,.2), 0 0 5px rgba(255,255,255,.2);
 }
 
@@ -20,8 +22,20 @@ font-size: 50px;
  object-fit: cover;
  top: 0;
  z-index: -2;
+ opacity:1;
 }
 
 .h2-home {
 color: white;
+}
+
+.gradient {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(128deg, rgba(0, 0, 0, 0.4) 43%, rgba(74, 74, 79, 0) 78%);
+  z-index: -1;
 }
