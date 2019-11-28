@@ -6,7 +6,7 @@ const initTypedJS = () => {
 
   if (span) {
     new Typed('#banner-typed-text', {
-      strings: ['Fini les prises de tête, avec BeRomantic, votre coach personnalisé !'],
+      strings: ['Fini la prise de tête, avec BeRomantic, votre coach personnalisé !'],
       typeSpeed: 50,
       loop: true
     });
