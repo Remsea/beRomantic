@@ -1,0 +1,22 @@
+         <% tab = {
+Concert: 'fas fa-drum',
+Théâtre: 'fas fa-theater-masks',
+Festival: 'fas fa-microphone-alt',
+Danse: 'fas fa-glasses',
+Spectacle: 'far fa-grin-tears',
+Exposition: 'fas fa-camera-retro'} %>
+
+<% partenaire_interest = current_user.partenaire_interests.find_by(interest_id: interest.id) %>
+<% if partenaire_interest  %>
+  <%= link_to partenaire_interest_path(partenaire_interest, type: "activity"), method: :delete, remote: true, class: 'select' do %>
+  <div class="hoover123">
+  <i class="<%= tab[interest.title.to_sym] %>"></i><p class="pstyle"><%= interest.title %></p>
+  </div>
+  <% end %>
+<% else %>
+  <%= link_to interest_partenaire_interests_path(interest, type: "activity"), method: :post, remote: true do %>
+  <div class="hoover123">
+   <i class="<%= tab[interest.title.to_sym] %>"></i><p class="pstyle"><%= interest.title %></p>
+  </div>
+  <% end %>
+<% end %>

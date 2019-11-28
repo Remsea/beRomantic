@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :pages, only: [:show]
   resources :partenaires, only: [:index, :update, :edit]
-  resources :partenaire_interests, only: [:create, :destroy]
+
+  resources :interests, only: [] do
+    resources :partenaire_interests, only: [:create]
+  end
+
+  resources :partenaire_interests, only: [:destroy, :create]
   resources :memos, only: [:create, :destroy, :update]
   resources :key_dates, only: [:create, :destroy, :update]
   resources :user_events, only: [:create, :destroy, :index, :update]

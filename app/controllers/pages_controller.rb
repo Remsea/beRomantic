@@ -109,7 +109,7 @@ limit #{nb_element.to_i};"
 
   def set_insta
     url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=25064177769.1677ed0.8bf171bb5f7a4fcc8995d4172178df73"
-    user_serialized = open(url).read
+    user_serialized = RestClient.get(url).body
     user = JSON.parse(user_serialized)
     # @full_name = user['data'].first['user']['full_name']
     # @profile_picture = user['data'].first['user']['profile_picture']
@@ -127,5 +127,8 @@ limit #{nb_element.to_i};"
     data.each do |times|
       @dates << times['created_time']
     end
+  rescue OpenURI::HTTPError
+    @dates = []
+    @images =[]
   end
 end

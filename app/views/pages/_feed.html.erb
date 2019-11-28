@@ -1,23 +1,16 @@
 <div class="maincard maincardfeed">
   <div class="feedtitle">
-    <h3 class="h3title">Ses derniers posts Instagram</h3>
+    <h2 class="h3title">Ses derniers posts Instagram</h2>
   </div>
   <%# raw(ap @image) %>
     <div class="mr-2titi">
+      <% if @images != [] %>
           <% @images.each do |image|  %>
             <div class="toto5">
               <%= image_tag image[:url], width: 100, height: 100, class:"insta12" %>
               <p class="date12">Il y a <%= time_ago_in_words Time.at(image[:created_time].to_i) %></p>
             </div>
         <% end %>
+      <% end %>
     </div>
 </div>
-
-
-<!--
-        <div class="date12">
-          <% @dates.each do |date| %>
-            <%= time_ago_in_words Time.at(1574433880) %>
-          <% end %>
-      </div>
- -->
