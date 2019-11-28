@@ -30,7 +30,7 @@ function sendCredentialsToServer() {
         console.log(subscription.toJSON());
 
         $.ajax({
-          url: `http://localhost:3000/ajax/users`,
+          url: `/ajax/users`,
           method: "post",
           // data: {userId: currentUserToScript}
           data: "subscription=" + JSON.stringify(subscription),
