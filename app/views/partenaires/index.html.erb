@@ -56,7 +56,7 @@
           :interest_id,
           options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"),:id,:title),
           { include_blank: true },
-          class:"select2 encart-forms")
+          class:"select2")
           %>
         <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
       <% end %>

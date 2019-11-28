@@ -2,12 +2,12 @@
 .eventcard {
   height: 230px;
   width: 300px;
-  box-shadow: 10px 10px 10px rgba(164, 156, 156, 0.5);
+  box-shadow: 5px 5px 5px rgba(164, 156, 156, 0.3);
   display: flex;
   align-items: flex-end;
   position: relative;
   overflow: hidden;
-  border-radius:7px;
+  border-radius: 2px;
 }
 
 #event-cards-wrapper {
@@ -102,6 +102,7 @@
   font-size: 18px;
   font-weight:bold;
   text-overflow: "…";
+  color: #494957;
 }
 
 .eventp{
