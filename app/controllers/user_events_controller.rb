@@ -17,6 +17,7 @@ class UserEventsController < ApplicationController
       end
     end
     @results = Event.where(query.to_s)
+    caleventnumber
   end
 
   def update
