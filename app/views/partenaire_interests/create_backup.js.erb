@@ -19,12 +19,16 @@ function addInteret1(reviewHTML) {
 //   reviews.innerHTML = reviewHTML;
 // }
 
-<% if @type == "activity" %>
-  var html = '<%= j render "partenaire_interests/link_toogle_partenaire", interest: @interest %>';
-  document.querySelector("[data-interest-id='<%= @interest.id %>']").innerHTML = html;
-<% elsif @part_interest.errors.any? %>
+<% if @part_interest.errors.any? %>
   refreshForm1();
 <% else %>
+  <%#if @part_interest.interest.genre == "Centre d'intérêt" %>
   addInteret1('<%= j render "partenaires/interet"%>');
   refreshForm1();
+  //<% #elsif @part_interest.interest.genre == "Activité" %>
+  // addInteret2('<%= j render "partenaires/activites"%>');
+  // refreshForm2();
+  //<% #end %>
 <% end %>
+
+

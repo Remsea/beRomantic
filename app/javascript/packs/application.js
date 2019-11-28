@@ -3,7 +3,8 @@ import "bootstrap";
 import { listenerrange } from './rangeoutput.js'; // ./ sinon. va chercher dans node module
 import { initTypedJS } from '../components/init_typed';
 import { showcalendar } from './showcalendar.js';
-import { initSelect2 } from './init_select2'
+import { initSelect2 } from './init_select2';
+import { addListenerActivite } from './activite';
 
 
 initSelect2()
@@ -82,3 +83,4 @@ listenerrange();
 initTypedJS();
 showcalendar();
 cacheaddavatar();
+addListenerActivite();
