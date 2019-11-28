@@ -30,8 +30,8 @@ p.pstyle {
 }
 
 .margin-page {
-margin: 0 100px 0 100px;
-min-height: 100vh;
+  margin: 0 190px 0 190px;
+  min-height: 100vh;
 }
 
 .avatare {
@@ -90,9 +90,7 @@ a {
   text-decoration: none;
 }
 
-p {
-  margin-left: 5px;
-}
+
 
 .line {
   border-bottom: 1px solid #C4BBB8;
@@ -111,6 +109,11 @@ p {
     display: flex;
     text-align: center;
   }
+
+  p {
+    margin-left: 5px;
+  }
+
 .hoover123:hover {
   transform: scale(1.2);
   text-decoration: none !important;

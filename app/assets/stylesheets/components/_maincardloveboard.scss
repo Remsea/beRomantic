@@ -5,7 +5,7 @@ border: solid rgb(240,240,240) 1px;
 // background-color: rgb(255,255,255);
 // background-color: #ffffffad;
 background-color: #fffffff5;
-margin: 15px;
+margin-bottom: 20px;
 padding: 10px 10px;
 display: flex;
 position: relative;
@@ -14,7 +14,7 @@ overflow-x: hidden;
 }
 
 .cardsmemocontainer {
-  padding: 10px;
+  // padding: 10px;
 }
 
 .maincard.lightshadow{
@@ -49,5 +49,5 @@ overflow-x: hidden;
   padding-left: 15px;
   padding-bottom: 0px;
   margin-bottom: 65px;
-  border-radius: 5px;
+  border-radius: 2px;
 }

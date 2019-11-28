@@ -1,7 +1,9 @@
-<div id="date_clef">
-  <%= form_with url: key_dates_path, method: :post do |f| %>
-  <%= f.date_field :date, required: true, class:"encart-forms" %>
-  <%= f.text_field :description, class:"encart-forms" %>
-  <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
-<% end %>
+<div class="margin-forms">
+  <div id="date_clef">
+    <%= form_with url: key_dates_path, method: :post do |f| %>
+    <%= f.date_field :date, required: true, class:"encart-forms" %>
+    <%= f.text_field :description, class:"encart-forms" %>
+    <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
+  <% end %>
+  </div>
 </div>
