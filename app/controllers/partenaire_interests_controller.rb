@@ -45,7 +45,6 @@ class PartenaireInterestsController < ApplicationController
     @interest = @tdinteret.interest
     @type = params[:type]
     @tdinteret.destroy
-    ap params[:type]
   end
 
   private
