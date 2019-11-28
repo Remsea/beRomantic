@@ -127,5 +127,8 @@ limit #{nb_element.to_i};"
     data.each do |times|
       @dates << times['created_time']
     end
+  rescue OpenURI::HTTPError
+    @dates = []
+    @images =[]
   end
 end
