@@ -39,18 +39,18 @@
                         </div>
                       <% end %>
                     <div class="jourline">
-                    <div class="popjour"><%= resu['day'].to_i %></div>
+                    <div class="popjour <%= 'past' if Date.parse(resu['date']) < Date.today %>"><%= resu['day'].to_i %></div>
                     <div class="caltext">
-                      <p class="<%=resu['categorie']%>">
-                        <i class="<%= icon[resu['categorie'].to_sym] %>"></i>
+                      <p class="<%=resu['categorie']%> <%= 'past' if Date.parse(resu['date']) < Date.today %>">
+                        <i class="<%= icon[resu['categorie'].to_sym] %> <%= 'past' if Date.parse(resu['date']) < Date.today %>"></i>
                         <%= resu['description'] %>
                       <% if resu['diff'] != 0 %>
                       - <%=resu['diff'].to_i %> ans
                       <% end %>
                       </p>
                   <% else %>
-                      <p class="<%=resu['categorie']%>">
-                      <i class="<%= icon[resu['categorie'].to_sym] %>"></i>
+                      <p class="<%=resu['categorie']%> <%= 'past' if Date.parse(resu['date']) < Date.today %>">
+                      <i class="<%= icon[resu['categorie'].to_sym] %> <%= 'past' if Date.parse(resu['date']) < Date.today %>"></i>
                       <%= resu['description'] %>
                       <% if resu['diff'] != 0 %>
                       - <%=resu['diff'].to_i %> ans
