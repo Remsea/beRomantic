@@ -11,8 +11,9 @@
 }
 
 .mini-card {
-  background-color: rgba(8, 65, 92, 0.8);
-  color: white;
+  background-color: rgba(254, 255, 255, 0.8);
+  // color: white;
+  color: #9e1b16;
   border-radius: $border-radius;
   padding: 4px 6px;
   margin-bottom: 10px;
@@ -25,6 +26,7 @@
   align-items: flex-end;
   justify-content: space-between;
   position: relative;
+  font-weight: 500;
 
     p {
       font-size: 0.8em;
