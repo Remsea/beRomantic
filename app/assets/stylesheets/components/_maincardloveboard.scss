@@ -9,7 +9,8 @@ margin: 15px;
 padding: 10px 10px;
 display: flex;
 position: relative;
-overflow: hidden;
+overflow-y: hidden;
+overflow-x: hidden;
 }
 
 .cardsmemocontainer {
@@ -27,7 +28,7 @@ overflow: hidden;
   padding-top: 50px;
   padding-left: 15px;
   padding-bottom: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   box-shadow: none;
   background: none;
   border: none;
