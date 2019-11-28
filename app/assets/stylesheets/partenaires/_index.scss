@@ -75,6 +75,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  margin-left: 5px;
+}
+
 .line {
   border-bottom: 1px solid #C4BBB8;
 }
@@ -92,4 +96,8 @@ a {
     display: flex;
     text-align: center;
   }
+.hoover123:hover {
+  transform: scale(1.2);
+}
+
 }
