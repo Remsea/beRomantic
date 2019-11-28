@@ -3,11 +3,12 @@
 .background-card-light {
   border-radius: $border-radius;
   box-shadow: $box-shadow;
-  //border: solid rgb(220,220,220) 0.2px;
   background-color: rgba(255,255,255,0.8);
-  margin: 15px;
   padding: $padding-cards;
-  width: 100%;
+}
+
+.margin-card-activities {
+  margin: 15px 0 15px 0;
 }
 
 .mini-card {
@@ -41,10 +42,12 @@
 
     i {
     position: absolute;
-    top: -9px;
-    right: -16px;
+    top: -5px;
+    right: -8px;
     color: $rougefonce;
-    font-size: 1.4em;
+    font-size: 1.3em;
+    background-color: white;
+    border-radius: 50px;
     transition: all 0.2s ease;
     opacity: 0.7;
       &:hover {
@@ -60,6 +63,28 @@
       width: 370px;
       flex-direction: column;
     }
+
+.keydate-line {
+  color: #161616;
+  border-radius: $border-radius;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  position: relative;
+  text-decoration: none;
+  list-style: none;
+  // margin-left: 10px;
+  display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+
+    i {
+    position: absolute;
+    top: 8px;
+    color: $rougefonce;
+    font-size: 1.2em;
+    }
+  }
 
 .list-items {
   display: grid;
@@ -78,5 +103,18 @@
 .cross {
   position: absolute;
   right: 10px;
+}
 
+// .ligne {
+//   color: rgb(255,255,255);
+// }
+
+.encart-forms {
+  color: #161616;
+  border: solid 1px #161616;
+  border-radius: $border-radius;
+  padding: 6px 12px;
+  opacity: 0.6;
+  display: inline-block;
+  background: white;
 }
