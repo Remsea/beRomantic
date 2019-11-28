@@ -16,10 +16,16 @@ class PagesController < ApplicationController
       @results_sql = calquery(current_user.id, 360, 5)
       caleventnumber
       @nbvisu = 5
+      if current_user.datescrap != Date.today
       usereventbuilder
+      current_user.datescrap = Date.today
+      end
+      if current_user.dateinsta != Date.today
       set_insta
+      current_user.dateinsta = Date.today
+      end
+    selectquatre
     end
-
   end
 
   private
@@ -88,8 +94,12 @@ limit #{nb_element.to_i};"
           end
     end
     # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
+    selectquatre
+  end
+
+  def selectquatre
     @userevents = Event.joins(:user_events).where("user_events.user_id = ?",[current_user.id])
-    .order(:score).reverse_order.first(4)
+    .order(score: :desc).limit(4)
   end
 
   def set_insta
