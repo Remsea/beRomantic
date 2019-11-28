@@ -24,6 +24,7 @@ class UserEventsController < ApplicationController
     myevent = UserEvent.find(params[:id])
     myevent.calendar = myevent.calendar == true ? false : true
     myevent.save!
+    flash['nocalcul'] = true
     redirect_to pages_path
   end
 

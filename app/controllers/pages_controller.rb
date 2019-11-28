@@ -16,15 +16,20 @@ class PagesController < ApplicationController
       @results_sql = calquery(current_user.id, 360, 5)
       caleventnumber
       @nbvisu = 5
-      if current_user.datescrap != Date.today
-      usereventbuilder
-      current_user.datescrap = Date.today
-      end
-      if current_user.dateinsta != Date.today
+      selectquatre
+      # if current_user.dateinsta != Date.today
       set_insta
-      current_user.dateinsta = Date.today
+      current_user.update(dateinsta: Date.today)
+      # end
+      if !flash['nocalcul']
+        if current_user.datescrap != Date.today
+          usereventbuilder
+          current_user.update(datescrap: Date.today)
+          puts 'on passe dans userventbuilder date diff'
+          puts Date.today
+          puts current_user.datescrap
+        end
       end
-    selectquatre
     end
   end
 
