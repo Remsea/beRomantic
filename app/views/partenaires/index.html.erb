@@ -1,62 +1,70 @@
 
+
 <!--<div class="bpcontainer">-->
-  <div>
-<div class="backimage">
- <%#= show_svg('backgroundpartenaire2.svg') %>
- </div>
+<div>
+  <div class="backimage">
+   <%#= show_svg('backgroundpartenaire2.svg') %>
 
   <div class="navs sticky">
       <%= render 'pages/toper' %>
   </div>
 
-  <div>
-      <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
-  </div>
-<div class="avatar-girl">
-    <%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, crop: :thumb, radius: 50, gravity: :face %>
+  <div class="margin-page">
     <div>
-      <a href="" id="clickavatar">Ajoute une photo</a>
+        <p><%= @partenaires.first.firstname unless @partenaires.nil? %></p>
     </div>
-</div>
-<div class="avatare">
+    <div class="avatar-girl">
+      <%= cl_image_tag @partenaires.first.photo, width: 75, height: 75, crop: :thumb, gravity: :face %>
+      <div>
+        <a href="" id="clickavatar">Ajoute une photo</a>
+      </div>
+    </div>
+    <div class="avatare">
       <%= render 'avatar' %>
     </div>
 
-<div class="activites">
-    <h2 class="ml-3" ><i class="fas fa-theater-masks" style="color: #9E1C17;"></i> Facile, ses activités culturelles préférées ?</h2>
-    <div class="maincard">
-        <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
-          <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
-          <%= f.submit :ajouter %>
-        <% end %>
-      <div id="activity" >
-        <%= render 'partenaires/activites' %>
-      </div>
+    <div class="activites">
+      <div class="background-card-light margin-card-activities">
+        <h2><i class="fas fa-theater-masks" style="color: #9E1C17;"></i> Ses activités culturelles favorites</h2>
+        <h3>Pour qu'on te propose des idées de sortie qui feront mouche !</h3>
+          <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+            <%= f.select(:activite_id, options_from_collection_for_select(Interest.where(genre: "Activité"), :id, :title)) %>
+            <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
+            <% end %>
+          <div id="activity" >
+            <%= render 'partenaires/activites' %>
+          </div>
+        </div>
     </div>
-  </div>
 
-<div class="bloc-dates-interest">
+    <div class="bloc-dates-interest">
+      <div class="background-card-light">
+        <h2><i class="far fa-calendar-alt" style="color: #9E1C17;"></i> Vos dates importantes</h2>
+        <h3>Pour t'en souvenir et marquer le coup !</h3>
+          <%= render 'partenaires/formdate' %>
+          <%= render 'partenaires/dateclef' %>
+      </div>
   <div class="background-card-light">
-    <h2><i class="far fa-calendar-alt" style="color: #9E1C17;"></i> Ne manque plus aucune date essentielle !</h2>
-      <%= render 'partenaires/formdate' %>
-      <%= render 'partenaires/dateclef' %>
-  </div>
-
-  <div class="background-card-light">
-    <h2><i class="fas fa-paw" style="color: #9E1C17;"></i> Là, tu la connais sur le bout des doigts !</h2>
+    <h2><i class="fas fa-paw" style="color: #9E1C17;"></i> Ses centres d'intérêt</h2>
+    <h3>Pour lui proposer des activités qui feront mouche !</h3>
      <!-- , local: true pour le form_with evite ajax -->
       <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
-        <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
-        <%= f.submit :ajouter %>
+        <%= f.select(
+          :interest_id,
+          options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"),:id,:title),
+          { include_blank: true },
+          class: 'select2')
+          %>
+        <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
       <% end %>
       <div id="interets" >
         <%= render 'partenaires/interet' %>
       </div>
+    </div>
   </div>
-</div>
-
   <div class="footerdash">
     <%= render '/pages/footer' %>
+  </div>
   </div>
 </div>
 <!--</div>-->

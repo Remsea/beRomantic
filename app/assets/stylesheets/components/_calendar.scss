@@ -10,12 +10,15 @@
 
 .popannee {
   position: absolute;
-    left: -20px;
+    left: 0px;
     top: 10px;
     border-radius: $border-radius;
-    background-color: white;
-    font-size: 0.8em;
-    color: #2b5cd4;
+    // background-color: white;
+    // font-size: 0.8em;
+    // color: #2b5cd4;
+    background-color: #ffffff63;
+    font-size: 1em;
+    color: #9e1b16;
     max-width: 50px;
     padding: 4px;
     border: solid 1px;
@@ -26,15 +29,18 @@ display:flex;
 flex-wrap: wrap;
 width: 100%;
 border-radius: $border-radius;
-background-color: $gris2;
+// background-color: $gris2;
+background-color: #aaaaaa75;
 padding: 10px;
 margin-bottom: 3px;
 font-size: 0.9em;
 color: #706e6e;
+font-weight: 700;
 }
 
 .mois {
-  margin-right: 15px
+  margin-right: 15px;
+  min-width: 15%;
 }
 
 .contentjour {
@@ -63,7 +69,8 @@ color: #706e6e;
   display:flex;
   flex-wrap: wrap;
   width: 100%;
-  background-color: rgba(250,250,250,0.4);
+  // background-color: rgba(250,250,250,0.4);
+  background-color: rgba(250, 250, 250, 0.9);
   border: solid 1px lightgray;
   border-radius: $border-radius;
   margin-bottom: 3px;

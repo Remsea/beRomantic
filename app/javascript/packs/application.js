@@ -3,6 +3,10 @@ import "bootstrap";
 import { listenerrange } from './rangeoutput.js'; // ./ sinon. va chercher dans node module
 import { initTypedJS } from '../components/init_typed';
 import { showcalendar } from './showcalendar.js';
+import { initSelect2 } from './init_select2'
+
+
+initSelect2()
 
 function updateTextInput(val) {
           document.getElementById('textInput').value=val;
@@ -78,5 +82,3 @@ listenerrange();
 initTypedJS();
 showcalendar();
 cacheaddavatar();
-
-
