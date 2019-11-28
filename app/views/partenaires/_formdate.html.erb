@@ -1,5 +1,5 @@
 <div id="date_clef">
-  <%= form_with url: key_dates_path, method: :post, class:'text-center mb-2' do |f| %>
+  <%= form_with url: key_dates_path, method: :post do |f| %>
   <%= f.date_field :date, required: true, class:"encart-forms" %>
   <%= f.text_field :description, class:"encart-forms" %>
   <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
