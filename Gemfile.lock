@@ -277,6 +277,7 @@ DEPENDENCIES
   rails (= 5.2.3)
   rails-i18n
   redis
+  rest-client
   sassc-rails
   select2-rails
   simple_form
