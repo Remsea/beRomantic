@@ -3,10 +3,10 @@
 <% current_user.partenaire_interests.each do |pinterest| %>
   <% if pinterest.interest.genre == "Centre d'intérêt" %>
   <% piid = pinterest.id%>
-  <li data-PIid="<%=piid%>" class="mini-card">
+  <li data-PIid="<%=piid%>" class="mini-card mini-cards-interest">
     <%= pinterest.interest.title  %>
     <%= link_to partenaire_interest_path(piid), method: :delete, remote: true do %>
-      <i class="fas fa-times-circle cross"></i>
+      <i class="fas fa-times-circle cross red-cross"></i>
     <% end %>
   </li>
   <% end %>
