@@ -14,10 +14,11 @@
 @import "partenaires/*";
 
 body {
+  background-color: $body-bg;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'PT Sans', sans-serif;
+  font-family: $titles-font;
   color:rgb(73, 73, 87)
 }
 
@@ -35,11 +36,11 @@ h3 {
 }
 
 p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $body-font;
 }
 
 li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $body-font;
 }
 
 
