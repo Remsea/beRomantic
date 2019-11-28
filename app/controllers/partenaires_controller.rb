@@ -1,7 +1,8 @@
 class PartenairesController < ApplicationController
 
 def index
-@partenaires = current_user.partenaires
+  @partenaires = current_user.partenaires
+  caleventnumber
 end
 
 

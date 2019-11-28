@@ -15,7 +15,7 @@
       </div>
 
       <div class="memolist">
-        <div class="maincard lightshadow maincardevent">
+        <div class="cardsmemocontainer">
           <div class="d-flex flex-column justify-content-between align-items-center">
             <div id="memolist">
             <%= render 'partenaires/memo' %>
@@ -26,11 +26,6 @@
 
 
       <div class="calendar">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2 class="ml-2" >Mon planning d'attentions</h2>
-          <i class="fas fa-plus-square mr-4" style="font-size: 1.6em;color:rgb(73, 73, 87);"></i>
-        </div>
-
         <%= render 'calendar' %>
       </div>
       <div class="events">
@@ -40,5 +35,4 @@
       <div class="footerdash">
         <%= render '/pages/footer' %>
       </div>
-
 </div>

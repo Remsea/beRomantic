@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
+
   MONTH = %w[Janvier Février Mars Avril Mai Juin Juillet Août Septembre Octobre Novembre Décembre]
   def home
     set_insta
@@ -13,31 +14,21 @@ class PagesController < ApplicationController
 
     else
       @results_sql = calquery(current_user.id, 360, 5)
-      @caleventnum = caleventnumber(current_user.id)
+      caleventnumber
       @nbvisu = 5
+      if current_user.datescrap != Date.today
       usereventbuilder
+      current_user.datescrap = Date.today
+      end
+      if current_user.dateinsta != Date.today
       set_insta
+      current_user.dateinsta = Date.today
+      end
+    selectquatre
     end
-
   end
 
   private
-
-  def caleventnumber(id)
- sql = "with table_cal as
-((select id, current_date as date, 2 as score from key_dates where user_id = #{id})
-union
-(select id, calendardate as date, 1 as score from memos
-where user_id = #{id} and calendardate is not null)
-union
-(select e.id, e.start_date as date, 3 as score
-from user_events u
-inner join events e on e.id = u.event_id
-where u.user_id = #{id}  and u.calendar = true and e.start_date is not null))
-select count(id), sum(score) from table_cal
-where date >= current_date and date >= current_date - 60;"
-ActiveRecord::Base.connection.execute(sql).values
-  end
 
   def calquery(id, jour, nb_element)
     sql = "with anni as
@@ -103,8 +94,12 @@ limit #{nb_element.to_i};"
           end
     end
     # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
+    selectquatre
+  end
+
+  def selectquatre
     @userevents = Event.joins(:user_events).where("user_events.user_id = ?",[current_user.id])
-    .order(:score).reverse_order.first(4)
+    .order(score: :desc).limit(4)
   end
 
   def set_insta

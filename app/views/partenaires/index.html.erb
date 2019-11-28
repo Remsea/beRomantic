@@ -44,18 +44,21 @@
           <%= render 'partenaires/formdate' %>
           <%= render 'partenaires/dateclef' %>
       </div>
-
-      <div class="background-card-light">
-        <h2><i class="fas fa-paw" style="color: #9E1C17;"></i> Ses centres d'intérêt</h2>
-        <h3>Pour lui proposer des activités qui feront mouche !</h3>
-         <!-- , local: true pour le form_with evite ajax -->
-          <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
-            <%= f.select(:interest_id, options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"), :id, :title)) %>
-            <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
-          <% end %>
-          <div id="interets" >
-            <%= render 'partenaires/interet' %>
-          </div>
+  <div class="background-card-light">
+    <h2><i class="fas fa-paw" style="color: #9E1C17;"></i> Ses centres d'intérêt</h2>
+    <h3>Pour lui proposer des activités qui feront mouche !</h3>
+     <!-- , local: true pour le form_with evite ajax -->
+      <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+        <%= f.select(
+          :interest_id,
+          options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"),:id,:title),
+          { include_blank: true },
+          class: 'select2')
+          %>
+        <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
+      <% end %>
+      <div id="interets" >
+        <%= render 'partenaires/interet' %>
       </div>
     </div>
   </div>
