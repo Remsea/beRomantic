@@ -1,11 +1,14 @@
 .maincard {
 border-radius: $border-radius;
-box-shadow: 0px 0px 15px 8px #dee2e6;
+// box-shadow: 0px 0px 15px 8px #dee2e6;
 border: solid rgb(240,240,240) 1px;
-background-color: rgb(255,255,255);
+// background-color: rgb(255,255,255);
+background-color: #ffffffad;
 margin: 15px;
 padding: 10px 10px;
 display: flex;
+position: relative;
+overflow: hidden;
 }
 
 .maincard.lightshadow{
@@ -15,11 +18,17 @@ display: flex;
 }
 
 
-.maincardevent {
+.events > .maincardevent, .memolist > .maincardevent {
   padding-top: 50px;
-    padding-left: 15px;
-    padding-bottom: 25px;
-    margin-bottom: 50px;
+  padding-left: 15px;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+  box-shadow: none;
+  background: none;
+  border: none;
+  border-radius: 2px;
+
+
 }
 
 .divtitleeventcard {
@@ -27,4 +36,12 @@ display: flex;
   left: 3px;
   height: 100%;
   top: -5px;
+}
+
+.maincardfeed {
+  padding-top: 49px;
+  padding-left: 15px;
+  padding-bottom: 0px;
+  margin-bottom: 65px;
+  border-radius: 5px;
 }

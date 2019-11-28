@@ -8,11 +8,24 @@
   display: flex;
 }
 .date12 {
-  text-align: center;
-  font-size: 0.8em;
-  margin-top: 4px;
+  font-size: 0.7em;
+    margin-top: 4px;
+    text-align: center;
+    color: #8f8f8f;
 }
 
 .insta12 {
   border-radius: $border-radius;
+}
+
+.feedtitle {
+  position: absolute;
+  left: 20px;
+  height: 100%;
+  top: 13px;
+}
+
+.h3title {
+  margin-top: 10px;
+    color: #9E1C17;
 }

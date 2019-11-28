@@ -12,18 +12,22 @@
 }
 
 .mini-card {
-  background-color: rgba(8, 65, 92, 0.8);
-  color: white;
+  background-color: rgba(254, 255, 255, 0.8);
+  // color: white;
+  color: #9e1b16;
   border-radius: $border-radius;
   padding: 4px 6px;
   margin-bottom: 10px;
   position: relative;
   text-decoration: none;
   list-style: none;
+  margin-left: 10px;
+  flex-grow:1;
   display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    position: relative;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  font-weight: 500;
 
     p {
       font-size: 0.8em;
@@ -32,7 +36,7 @@
     span {
       font-size: 0.6em;
     }
-    li a {
+    div a {
       position: relative;
     }
 
@@ -41,11 +45,24 @@
     top: -5px;
     right: -8px;
     color: $rougefonce;
-    font-size: 1.2em;
+    font-size: 1.3em;
     background-color: white;
     border-radius: 50px;
+    transition: all 0.2s ease;
+    opacity: 0.7;
+      &:hover {
+        opacity:1;
+      }
+
     }
 }
+   .listoe {
+      display:flex;
+      justify-content:center;
+      align-items: flex-start;
+      width: 370px;
+      flex-direction: column;
+    }
 
 .keydate-line {
   color: #161616;

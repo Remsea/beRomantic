@@ -10,22 +10,20 @@
         <%= render 'feed' %>
       </div>
 
-
-
-      <div class="memolist">
-        <div class="d-flex justify-content-between align-items-center">
-           <h2 class="ml-3" >Ses remarques</h2>
-          <i class="fas fa-plus-square mr-4" id="plusmemo">
-          </i>
-        </div>
-      <%= render 'memoformsansdate' %>
+      <div class="addmemo memoadd">
+      <%=render 'memoformsansdate' %>
+      </div>
 
       <div class="memolist">
-        <div class="maincard lightshadow">
-          <%= render 'partenaires/memo' %>
+        <div class="maincard lightshadow maincardevent">
+          <div class="d-flex flex-column justify-content-between align-items-center">
+            <div id="memolist">
+            <%= render 'partenaires/memo' %>
+          </div>
+          </div>
         </div>
       </div>
-    </div>
+
 
       <div class="calendar">
         <div class="d-flex justify-content-between align-items-center">
