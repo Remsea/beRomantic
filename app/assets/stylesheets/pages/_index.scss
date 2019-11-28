@@ -51,6 +51,10 @@
   height: auto;
   display:flex;
   flex-direction: column;
+
+  h2 {
+    display: inline-block;
+  }
 }
 
 #plusmemo {
@@ -147,8 +151,8 @@
 
 .brcontainer {
   display: grid;
-  background-image: linear-gradient(rgba(250,250,250,0.8), rgba(250,250,250,0.3)), asset_url('lovewall2.png');
-  background-size:contain;
+  background: linear-gradient(rgba(250,250,250,0.8), rgba(250,250,250,0.3)), asset_url('lovewall2.png') no-repeat center center fixed;
+  background-size:cover;
      // grid-template-areas:
      //  ". header header header"
      //  "footer footer footer";
