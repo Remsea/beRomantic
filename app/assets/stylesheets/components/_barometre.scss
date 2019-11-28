@@ -104,7 +104,7 @@
   outline: none;
 }
 $bgColor:white;
-$boxColor:#E5E5E5;
+$boxColor:#DB9C96;
 $waterFColor:#9E1C17;
 $waterBColor:red;
 
@@ -114,7 +114,7 @@ $waterBColor:red;
   width: 100px;
   clip-path: url(#heart);
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: $boxColor;
