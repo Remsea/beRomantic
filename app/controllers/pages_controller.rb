@@ -25,9 +25,7 @@ class PagesController < ApplicationController
         if current_user.datescrap != Date.today
           usereventbuilder
           current_user.update(datescrap: Date.today)
-          puts 'on passe dans userventbuilder date diff'
-          puts Date.today
-          puts current_user.datescrap
+
         end
       end
     end
@@ -75,6 +73,7 @@ limit #{nb_element.to_i};"
         end
         i += 1
       end
+
     event_id_matching_activite = Event.where(query.to_s).select("id")
     # byebug
     # on cree les evenements dans la table user_event qui matche les activites (concert, theatre...)
