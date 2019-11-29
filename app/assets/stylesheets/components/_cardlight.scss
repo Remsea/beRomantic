@@ -142,6 +142,11 @@
 
   .select2 {
   width: 200px !important;
+
+  .select2-selection {
+  height: 40px !important;
+  padding-top: 5px !important;
+  }
 }
 
 }
