@@ -9,7 +9,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to omniauth_authorize_path(resource_name, provider), method: :post do %><br />
-      <p class="button-facebook"><i class="fab fa-facebook-square picto-fb"></i>Me connecter avec Facebook</p>
+      <p class="button-facebook text-deco"><i class="fab fa-facebook-square picto-fb"></i>Me connecter avec Facebook</p>
     <% end %>
   <% end %>
 <% end %>
