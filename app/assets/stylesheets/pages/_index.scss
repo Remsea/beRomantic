@@ -186,7 +186,7 @@ min-height: 100vh;
   flex-grow:1;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
   font-weight: 500;
   align-self: stretch;
@@ -195,6 +195,7 @@ min-height: 100vh;
     span {
       font-size: 0.6em;
       color: #494957;
+      margin-left: auto;
     }
     div a {
       position: relative;
@@ -218,7 +219,7 @@ min-height: 100vh;
 }
 .p-memo {
       font-size: 0.8em;
-      margin: auto;
+      margin-left: 10px;
       color: #494957;
       font-weight: 500;
     }
