@@ -29,10 +29,10 @@
 
           <div class="notes">
             <div style="display:flex">
-              <% if UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 62 %>
+              <% if UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 3 %>
 
               <%= image_tag 'ratingheart.svg', id:"ratingheart" %>
-              <% elsif UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 110 %>
+              <% elsif UserEvent.find_by(event_id: r.id, user_id: current_user.id).score <= 10 %>
 
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>
               <%= image_tag 'ratingheart.svg',id:"ratingheart" %>

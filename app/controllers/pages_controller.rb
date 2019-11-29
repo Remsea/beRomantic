@@ -93,6 +93,10 @@ limit #{nb_element.to_i};"
   end
 
   def calculscore
+
+    # reinit score
+    current_user.user_events.update_all(score: 0)
+
     # augmentation du score en fct des interets presents dans la description ou le titre
     centre_interet = current_user.interests.map { |interest|  interest.title.downcase if interest.genre = "Centre d'intérêt" }
     centre_interet.each do |interet|
