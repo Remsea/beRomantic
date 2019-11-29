@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   def index
     # no more useful as the input form has disapeared
     if params[:nb].present?
+      calculscore
       @results_sql = calquery(current_user.id, 360, params[:nb])
       render partial: 'calendarseule', locals: { results_sql: @results_sql }
 
@@ -16,6 +17,7 @@ class PagesController < ApplicationController
       @results_sql = calquery(current_user.id, 360, 5)
       caleventnumber
       @nbvisu = 5
+      calculscore
       selectquatre
       # if current_user.dateinsta != Date.today
       set_insta
@@ -85,6 +87,12 @@ limit #{nb_element.to_i};"
       end
     end
 
+    calculscore
+    # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
+    selectquatre
+  end
+
+  def calculscore
     # augmentation du score en fct des interets presents dans la description ou le titre
     centre_interet = current_user.interests.map { |interest|  interest.title.downcase if interest.genre = "Centre d'intérêt" }
     centre_interet.each do |interet|
@@ -97,8 +105,6 @@ limit #{nb_element.to_i};"
             end
           end
     end
-    # @userevents = current_user.user_events.order(:score).reverse_order.first(4)
-    selectquatre
   end
 
   def selectquatre
