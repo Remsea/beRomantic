@@ -51,12 +51,12 @@
     <h3>Pour être au plus près de ses envies !</h3>
      <!-- , local: true pour le form_with evite ajax -->
      <div class="margin-forms">
-      <%= form_with url: partenaire_interests_path, method: :post, class:'text-center mb-2' do |f| %>
+      <%= form_with url: partenaire_interests_path, method: :post do |f| %>
         <%= f.select(
           :interest_id,
           options_from_collection_for_select(Interest.where(genre: "Centre d'intérêt"),:id,:title),
           { include_blank: true },
-          class:"select2")
+          class:"select2", id:"truc")
           %>
         <%= f.submit :Ajouter, class:"btnberomantic btnberomantic:hover" %>
       <% end %>
