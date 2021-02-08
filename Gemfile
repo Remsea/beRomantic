@@ -6,7 +6,7 @@ gem "select2-rails"
 gem 'rails-i18n'
 gem 'pg_search'
 gem 'webpush'
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem 'cloudinary', '~> 1.9.1'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'omniauth-facebook'
